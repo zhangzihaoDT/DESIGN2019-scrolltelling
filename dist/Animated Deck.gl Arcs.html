@@ -1,0 +1,136 @@
+<html>
+  <head>
+    <title>deck.gl + Mapbox Integration</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://cdn.jsdelivr.net/npm/deck.gl@7.0.0-rc.1/dist.min.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
+  </head>
+  <body>
+    <div id="map" style="width: 100vw; height: 100vh"></div>
+  </body>
+  <script type="text/javascript">
+    const {MapboxLayer, ArcLayer, ScatterplotLayer} = deck;
+    class ArcBrushingLayer extends ArcLayer {
+        // custom shader with step function to create opacity gradient with colorA and colorB
+        // More at https://thebookofshaders.com/05/
+        getShaders() {
+            return Object.assign({}, super.getShaders(), {
+            inject: {
+                'vs:#decl': `
+                uniform float coef;
+                `,
+                'vs:#main-end': `
+                if (coef > 0.0) {
+                vec4 pct = vec4(segmentRatio);
+                pct.a = step(coef, segmentRatio);
+                vec4 colorA = instanceTargetColors;
+                vec4 colorB = vec4(instanceTargetColors.r, instanceTargetColors.g, instanceTargetColors.b, 0.0);
+                vec4 color = mix(colorA, colorB, pct) / 255.;
+                vColor = color;
+                }
+                            `,
+                            'fs:#main-start': `
+                if (vColor.a == 0.0) discard;
+                            `,
+            },
+            });
+        }
+        
+        // overwrite draw fucntion
+        draw(opts) {
+            const {coef} = this.props;
+            // add uniforms
+            const uniforms = Object.assign({}, opts.uniforms, { coef });
+            super.draw(Object.assign({}, opts, {uniforms}));
+        }
+    }
+
+    // Get a mapbox API access token
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiemhhbmd6aWhhbyIsImEiOiJjamN6dDF1bzMwenphMzNuMjlqaG1vOTJlIn0.VdSfOPUC85YcWqs3LZeXmA';
+    const DATA_URL ='https://gist.githubusercontent.com/yarynam/a1a75a1400ca891db4adaaf54ea7022b/raw/f36b4bce4e163c725c8ce1bf675fd95105d2523e/trips.json';
+    const DATA = d3.json("./data/my_data.json",function(data){
+        data.filter(function(d){return d.year==2018})
+        return data;
+       });
+    
+    const colorScale = d3.scaleOrdinal()
+      .domain([0,1.3])
+      .range([
+  [255, 255, 204],
+  [199, 233, 180],
+  [127, 205, 187],
+  [65, 182, 196],
+  [29, 145, 192],
+  [34, 94, 168],
+  [12, 44, 132]
+])
+
+    const WIDTH_SCALE = d3.scaleLinear().domain([0,14000]).range([1, 10]);
+
+    // Initialize mapbox map
+    const map = new mapboxgl.Map({
+      container: 'map',
+      center: [108,39.915085],
+      zoom: 3.2,
+      pitch: 30,
+      bearing: 0,
+      renderWorldCopies: 1,
+      style: "mapbox://styles/zhangzihao/cjn09g7yq52jp2ro8ri6tjun6",
+      scrollZoom: true
+    });
+
+    // Create a mapbox-compatible deck.gl layer
+    const myDeckLayer = new MapboxLayer({
+      id: 'my-scatterplot',
+      type: ScatterplotLayer,
+      data: [
+        {position: [-74.5, 40], size: 10000}
+      ],
+      getPosition: d => d.position,
+      getRadius: d => d.size,
+      getColor: [255, 0, 0]
+    });
+
+    const arcsLayer = new MapboxLayer({
+       type: ArcBrushingLayer,
+       id: `arcs`,
+       data: DATA,
+       opacity: 1,
+       coef: 0.001,
+       getSourcePosition: d => [d.departure_lng, d.departure_lat],
+       getTargetPosition: d => [d.arrival_lng, d.arrival_lat],
+       getSourceColor: d => colorScale(d.departure_centrality),
+       getTargetColor: d => colorScale(d.arrival_centrality),
+       getWidth: d => WIDTH_SCALE(d.flights),
+       getHeight:0.5,
+       getTilt:30
+    });
+
+    // Insert the layer before mapbox labels
+    map.on('load', () => {
+      map.addLayer(arcsLayer); // add arc layer
+      map.style.stylesheet.layers.forEach(function(layer) {    //remove labels
+        if (layer.type === 'symbol') {
+            map.removeLayer(layer.id);
+        }
+     });
+    });
+
+    function animateArcs(layer) {
+        var coef = 0.001;
+        const animationInterval = setInterval(()=> {
+        coef += 0.005;
+        if (coef >= 1.0) {
+            clearInterval(animationInterval);
+        }
+        layer.setProps({coef});
+        }, 100);
+    }
+
+    animateArcs(arcsLayer)
+
+    
+  </script>
+</html>
