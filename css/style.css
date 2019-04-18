@@ -1,0 +1,45 @@
+.article {
+    margin: 10rem auto;
+    width: 75vw;
+  }
+  .intro, .part {
+    margin-bottom: 50vh;
+  }
+  .part {
+    position: relative;
+    overflow: hidden;
+  }
+  .group {
+    padding-bottom: 50vh;
+  }
+  .opening {
+    margin-top: 25vh;
+    transform: translateY(-50%); 
+  }
+  h1, p {
+    margin: 0 2vw;
+    padding: 2rem 1rem;
+  }
+  h1 {
+    text-align: center;
+  }
+  p {
+    background-color: rgba(255,255,255,0.8)
+  }
+  .operatee {
+    position: absolute;
+    top: 0;
+    width: 75vw;
+    height: 50vh;
+    z-index: -1;
+  }
+  .operatee.during {
+    position: fixed;
+  }
+  .operatee.end {
+    position: static;
+  }
+  .mask {
+    height: 50vh;
+    border: 1px dotted #000;
+  }
