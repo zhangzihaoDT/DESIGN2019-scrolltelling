@@ -22,3 +22,4 @@ ggplot(cnt, aes(x = departure, y = freq)) +
   geom_bar(fill = "#0073C2FF", stat = "identity") +
   geom_text(aes(label = freq), vjust = -0.3) +
   theme_pubclean()
+

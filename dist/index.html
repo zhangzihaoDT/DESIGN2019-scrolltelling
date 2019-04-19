@@ -124,7 +124,7 @@ window.onload = function () {
       effect: "end"
     }],
     operatee: 'map'
-  }, {
+    },{
     operators: [{
       id: 'gridor',
       effect: "during"
@@ -336,6 +336,7 @@ window.onload = function () {
       element: map.getCanvasContainer(),
       trigger: function (container) {
         var svg = d3.select(container).append("svg")
+        
       }
     },
     // 7
