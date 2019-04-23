@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <title>deck.gl + Mapbox Integration</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://cdn.jsdelivr.net/npm/deck.gl@7.0.0-rc.1/dist.min.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
+  </head>
+  <body>
+    <div id="map" style="width: 100vw; height: 100vh"></div>
+  </body>
+  <script type="text/javascript">
+    const {MapboxLayer, HexagonLayer} = deck;
+
+    // Get a mapbox API access token
+    mapboxgl.accessToken = 'pk.eyJ1IjoidWJlcmRhdGEiLCJhIjoiY2pudzRtaWloMDAzcTN2bzN1aXdxZHB5bSJ9.2bkj3IiRC8wj3jLThvDGdA';
+    const DATA_URL ='https://gist.githubusercontent.com/veikkoeeva/29cdb7e5cf9438a8e0181c9e5d8a99b8/raw/4640ef338dfd672e8e83228ff19003f7c27c0301/data.csv';
+    const csvData = d3.csv(DATA_URL);
+    console.log(csvData);
+    // Initialize mapbox map
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v9',
+      center: [108,39.915085],
+      zoom: 11,
+      pitch: 30
+    });
+
+    // Create a mapbox-compatible deck.gl layer
+    const hexagonLayer = new MapboxLayer({
+        type: HexagonLayer,
+        id: 'heatmap',
+        data: csvData,
+        radius: 1000,
+        coverage: 1,
+        upperPercentile: 100,
+        // colorRange: COLOR_RANGE,
+        elevationRange: [0, 1000],
+        elevationScale: 25,
+        getElevationValue: points => Number(points[0].val),
+        extruded: true,
+        getPosition: d => [Number(d.lon), Number(d.lat)],
+        lightSettings: {
+          ambientRatio: 0.4
+        },
+      onHover: true,
+        opacity: 0.5
+    });	
+
+    // Insert the layer before mapbox labels
+    map.on('load', () => {
+      map.addLayer(hexagonLayer, 'waterway-label');
+    });
+  </script>
+</html>

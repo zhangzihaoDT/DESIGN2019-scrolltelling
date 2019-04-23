@@ -49,7 +49,6 @@
 
     // Get a mapbox API access token
     mapboxgl.accessToken = 'pk.eyJ1Ijoiemhhbmd6aWhhbyIsImEiOiJjamN6dDF1bzMwenphMzNuMjlqaG1vOTJlIn0.VdSfOPUC85YcWqs3LZeXmA';
-    const DATA_URL ='https://gist.githubusercontent.com/yarynam/a1a75a1400ca891db4adaaf54ea7022b/raw/f36b4bce4e163c725c8ce1bf675fd95105d2523e/trips.json';
     const DATA = d3.json("./data/my_data.json")
                    .then(function(data) {
                       data.forEach(function(d) {
@@ -81,16 +80,6 @@
     });
 
     // Create a mapbox-compatible deck.gl layer
-    const myDeckLayer = new MapboxLayer({
-      id: 'my-scatterplot',
-      type: ScatterplotLayer,
-      data: [
-        {position: [-74.5, 40], size: 10000}
-      ],
-      getPosition: d => d.position,
-      getRadius: d => d.size,
-      getColor: [255, 0, 0]
-    });
 
     const arcsLayer = new MapboxLayer({
       //  type: ArcBrushingLayer,
