@@ -12,10 +12,17 @@ summary(my_data)
 #my_data$flights_in <- as.numeric(as.character(my_data$flights_in))
 my_data[, c(6:11,13)] <- sapply(my_data[, c(6:11,13)], as.numeric)
 summary(my_data)
+install.packages('readr')
+library(readr)
+library(dplyr)
+shuju<-my_data %>% mutate(source=sprintf("[%s,%s]",departure_lng,departure_lat),
+         target=sprintf("[%s,%s]",arrival_lng,arrival_lat))
+summary(shuju)
+
 #CSV转JSON
 install.packages('jsonlite')
 library(jsonlite)
-json_data <- toJSON(my_data, pretty = TRUE)
+json_data <- toJSON(shuju, pretty = TRUE,force=TRUE)
 writeLines(json_data, "my_data.json")
 
 head(my_data)
