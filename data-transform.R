@@ -39,4 +39,34 @@ ggplot(cnt, aes(x = departure, y = freq)) +
   geom_text(aes(label = freq), vjust = -0.3) +
   theme_pubclean()
 
+#处理吞吐量的数据
+throughput <- read.csv("2015-2018_passenger_throughput.csv",encoding ="UTF-8",stringsAsFactors = FALSE,header = T)
+library(reshape2)
+head(throughput)
+names(throughput) = c("airport", "2015", "2016", "2017", "2018",'airport_code','airport_lat','airport_lng')
+names(throughput)
+throughput<-melt(throughput,
+                id.vars = c('airport','airport_code','airport_lng','airport_lat'),#需要保留不参与聚合的变量,
+                measure.vars = c("2015", "2016", "2017", "2018"),#用于聚合的变量,
+                variable.name='year',
+                value.name='passenger_throughput')
+summary(throughput)
+#将文中的NA记录行删除
+throughput$passenger_throughput <- as.numeric(throughput$passenger_throughput,throughput$year)
+throughput<-na.omit(throughput)
+is.na(throughput) #去除
+summary(throughput)#现在少了25行
+#坐标系变数组
+library(readr)
+library(dplyr)
+throughput<-throughput %>% mutate(position=sprintf("[%s,%s]",airport_lng,airport_lat))
+summary(throughput)
+class(throughput$year)
+throughput$year <- as.numeric(as.character(throughput$year))
+summary(throughput)
+#导出json
+library(jsonlite)
+json_data <- toJSON(throughput, pretty = TRUE,force=TRUE)
+writeLines(json_data, "throughput.json")
+
 
