@@ -8,12 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
   </head>
   <body>
-      <select name="year", id="YearSelector">
-          <option value="2015">2015</option>
-          <option value="2016">2016</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-        </select>
     <div id="map" style="width: 100vw; height: 100vh"></div>
   </body>
   <script type="text/javascript">
@@ -136,16 +130,6 @@
     // });
 
     // Insert the layer before mapbox labels
-
-    function renderYear(year){
-      map.addLayer(renderDataByYear(year)); // add arc layerx
-    }
-
-    document.getElementById('YearSelector').addEventListener('change', (e)=>{
-      debugger;
-      const year = parseInt(e.target.value)
-      renderYear(year);
-    })
 
     map.on('load', () => {
       console.log('trigger')
