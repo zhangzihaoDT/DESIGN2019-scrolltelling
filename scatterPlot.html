@@ -49,15 +49,14 @@
     mapboxgl.accessToken = 'pk.eyJ1Ijoiemhhbmd6aWhhbyIsImEiOiJjamN6dDF1bzMwenphMzNuMjlqaG1vOTJlIn0.VdSfOPUC85YcWqs3LZeXmA';
     
     const DATA = d3.json("./data/throughput.json");
-    const colorScale = d3.scaleOrdinal()
-                          .domain([456,208034,612572,5288675,2263015,100983290 ])
+    const colorScale = d3.scaleLinear()
+                          .domain([456,208034,612572,2263015,100983290])
                           .range([
-                                  [255, 0, 0,240],
-                                  [255, 0, 0,200],
-                                  [255, 0, 0,160],
-                                  [255, 0, 0,120],
-                                  [255, 0, 0,80],
-                                  [255, 0, 0,40]
+                                  [214, 235,251,150],
+                                  [180, 220,247,170],
+                                  [144, 204,243,190],
+                                  [101, 189,239,210],
+                                  [29, 174, 235,230]
                                 ]);
     const radiusScale = d3.scaleLinear()
                           .domain([456,100983290]).range([20000,200000]);
@@ -101,7 +100,7 @@
       console.log('trigger');
       let currentYear = 2015;
       currentLayer = renderDataByYear(currentYear)
-      map.addLayer(currentLayer); // add arc layerx
+      map.addLayer(currentLayer); // add arc layer
       // currentYear++;
       const interval = setInterval(()=>{
         if (currentYear >= 2017 ) {
@@ -116,7 +115,7 @@
         // currentYear++;
         map.addLayer(currentLayer); // add arc layerx
         
-      }, 2000)
+      }, 500)
     });
   </script>
 </html>

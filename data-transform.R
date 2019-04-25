@@ -10,7 +10,7 @@ my_data <- na.omit(my_data)
 summary(my_data)
 #character转numeric
 #my_data$flights_in <- as.numeric(as.character(my_data$flights_in))
-my_data[, c(6:11,13)] <- sapply(my_data[, c(6:11,13)], as.numeric)
+my_data[, c(6:11,12:13)] <- sapply(my_data[, c(6:11,12:13)], as.numeric)
 summary(my_data)
 install.packages('readr')
 library(readr)

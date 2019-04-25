@@ -99,7 +99,6 @@
                       data.forEach(function(d) {
                         d.source = eval(d.source);
                         d.target = eval(d.target);
-                        d['flights_in'] = +d['flights_in'];
                       });
                       console.log(data[0]);
                       return data.filter(function(d){
@@ -145,6 +144,7 @@
       debugger;
       const year = parseInt(e.target.value)
       renderYear(year);
+      map.removeLayer('2015');
     })
 
     map.on('load', () => {
