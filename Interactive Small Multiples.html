@@ -32,6 +32,26 @@
     stroke: #ccc;
     stroke-dasharray: 4,4
   }
+  .point {
+    fill: black;
+  }
+  .point text {
+    text-anchor: middle;
+    transform: translateY(-10px);
+    font-size: 10px;
+    stroke: none;
+  }
+  .bottom-handle {
+    text-anchor: middle;
+   	font-size: 10px;
+    transform: translateY(1.5em);
+  }
+  .top-handle {
+    display: none;
+  }
+  .annotation-line line {
+    display: none;
+  }
 </style>
 
 <div id='small-multiples'></div>
@@ -165,25 +185,27 @@ d3.csv('data/askmefi_category_year.csv',(r) => ({
       	.classed('multiple', true)
       	.merge(update)
         .call(chart)
-        .classed('tooltip', d => d.trackball.length);
+        .classed('tooltip', function(d) { return d.trackball.length; });
 
       // add the pointer component to the plot-area, re-rendering
       // each time the event fires.
       var pointer = fc.pointer()
-        .on('point', (event) => {
-          // determine the year
+        .on('point', function(event) {
           if (event.length) {
+            // determine the year
             var year = Math.round(xScale.invert(event[0].x));
             // add the point to each series
-            nested.forEach((group) => {
-              var value = group.values.find(v => v.year === year);
+            nested.forEach(function(group) {
+              var value = group.values.find(function(v) { return v.year === year; });
               group.trackball = [{
                 year: year,
                 value: value.n2
               }];
             })
           } else {
-            nested.forEach(g => g.trackball = [])
+            nested.forEach(function(g) {
+              g.trackball = [];
+            })
           }
           render();
         });
