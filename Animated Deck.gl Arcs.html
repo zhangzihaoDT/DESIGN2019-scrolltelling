@@ -8,50 +8,44 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
   </head>
   <body>
-      <select name="year", id="YearSelector">
-          <option value="2015">2015</option>
-          <option value="2016">2016</option>
-          <option value="2017">2017</option>
-          <option value="2018">2018</option>
-        </select>
     <div id="map" style="width: 100vw; height: 100vh"></div>
   </body>
   <script type="text/javascript">
     const {MapboxLayer, ArcLayer, ScatterplotLayer} = deck;
-    // class ArcBrushingLayer extends ArcLayer {
-    //     // custom shader with step function to create opacity gradient with colorA and colorB
-    //     // More at https://thebookofshaders.com/05/
-    //     getShaders() {
-    //         return Object.assign({}, super.getShaders(), {
-    //         inject: {
-    //             'vs:#decl': `
-    //             uniform float coef;
-    //             `,
-    //             'vs:#main-end': `
-    //             if (coef > 0.0) {
-    //             vec4 pct = vec4(segmentRatio);
-    //             pct.a = step(coef, segmentRatio);
-    //             vec4 colorA = instanceTargetColors;
-    //             vec4 colorB = vec4(instanceTargetColors.r, instanceTargetColors.g, instanceTargetColors.b, 0.0);
-    //             vec4 color = mix(colorA, colorB, pct) / 255.;
-    //             vColor = color;
-    //             }
-    //                         `,
-    //                         'fs:#main-start': `
-    //             if (vColor.a == 0.0) discard;
-    //                         `,
-    //         },
-    //         });
-    //     }
+    class ArcBrushingLayer extends ArcLayer {
+        // custom shader with step function to create opacity gradient with colorA and colorB
+        // More at https://thebookofshaders.com/05/
+        getShaders() {
+            return Object.assign({}, super.getShaders(), {
+            inject: {
+                'vs:#decl': `
+                uniform float coef;
+                `,
+                'vs:#main-end': `
+                if (coef > 0.0) {
+                vec4 pct = vec4(segmentRatio);
+                pct.a = step(coef, segmentRatio);
+                vec4 colorA = instanceTargetColors;
+                vec4 colorB = vec4(instanceTargetColors.r, instanceTargetColors.g, instanceTargetColors.b, 0.0);
+                vec4 color = mix(colorA, colorB, pct) / 255.;
+                vColor = color;
+                }
+                            `,
+                            'fs:#main-start': `
+                if (vColor.a == 0.0) discard;
+                            `,
+            },
+            });
+        }
         
-    //     // overwrite draw fucntion
-    //     draw(opts) {
-    //         const {coef} = this.props;
-    //         // add uniforms
-    //         const uniforms = Object.assign({}, opts.uniforms, { coef });
-    //         super.draw(Object.assign({}, opts, {uniforms}));
-    //     }
-    // }
+        // overwrite draw fucntion
+        draw(opts) {
+            const {coef} = this.props;
+            // add uniforms
+            const uniforms = Object.assign({}, opts.uniforms, { coef });
+            super.draw(Object.assign({}, opts, {uniforms}));
+        }
+    }
 
     // Get a mapbox API access token
     mapboxgl.accessToken = 'pk.eyJ1Ijoiemhhbmd6aWhhbyIsImEiOiJjamN6dDF1bzMwenphMzNuMjlqaG1vOTJlIn0.VdSfOPUC85YcWqs3LZeXmA';
@@ -64,8 +58,7 @@
                       });
                       // console.log(data[0]);
                       return data.filter(function(d){
-                        return d
-                        // return d.year == 2018
+                        return d.year == 2018
                       })
                     });
     // console.log(DATA);
@@ -81,7 +74,7 @@
       container: 'map',
       center: [108,39.915085],
       zoom: 3.2,
-      pitch: 0,
+      pitch: 30,
       bearing: 0,
       renderWorldCopies: 1,
       style: "mapbox://styles/zhangzihao/cjn09g7yq52jp2ro8ri6tjun6",
@@ -89,106 +82,47 @@
     });
 
     // Create a mapbox-compatible deck.gl layer
-
-  function renderDataByYear(year){
-      // debugger;
-      return new MapboxLayer({
-        type:ArcLayer,
-        id: String(year),
-        data: DATA.then(function(data) {
-                      data.forEach(function(d) {
-                        d.source = eval(d.source);
-                        d.target = eval(d.target);
-                      });
-                      console.log(data[0]);
-                      return data.filter(function(d){
-                        return d.year == year
-                      })
-                    }),
-        opacity: 1,
-        coef: 0.001,
-        getSourcePosition: d => d.source,
-        getTargetPosition: d => d.target,
-        getSourceColor: [255, 0, 0, 120],
-        getTargetColor: [0, 255, 0, 120],
-        getWidth: d => WIDTH_SCALE(d.flights_out),
-        getHeight:0.6,
-        getTilt:10
-      });
-    }
     
 
-    // const arcsLayer = new MapboxLayer({
-    //   //  type: ArcBrushingLayer,
-    //    type:ArcLayer,
-    //    id: `arcs`,
-    //    data: DATA,
-    //    opacity: 1,
-    //    coef: 0.001,
-    //    getSourcePosition: d => d.source,
-    //    getTargetPosition: d => d.target,
-    //    getSourceColor: [255, 0, 0, 120],
-    //    getTargetColor: [0, 255, 0, 120],
-    //    getWidth: d => WIDTH_SCALE(d.flights_out),
-    //    getHeight:0.6,
-    //    getTilt:10
-    // });
+    const arcsLayer = new MapboxLayer({
+       type: ArcBrushingLayer,
+       id: `arcs`,
+       data: DATA,
+       opacity: 1,
+       coef: 0.001,
+       getSourcePosition: d => d.source,
+       getTargetPosition: d => d.target,
+       getSourceColor: [255, 0, 0, 120],
+       getTargetColor: [0, 255, 0, 120],
+       getWidth: d => WIDTH_SCALE(d.flights_out),
+       getHeight:0.6,
+       getTilt:30
+    });
 
     // Insert the layer before mapbox labels
 
-    function renderYear(year){
-      map.addLayer(renderDataByYear(year)); // add arc layerx
-    }
-
-    document.getElementById('YearSelector').addEventListener('change', (e)=>{
-      debugger;
-      const year = parseInt(e.target.value)
-      renderYear(year);
-      map.removeLayer('2015');
-    })
 
     map.on('load', () => {
-      console.log('trigger')
-      let currentYear = 2015;
-      currentLayer = renderDataByYear(currentYear)
-      map.addLayer(currentLayer); // add arc layerx
-      // currentYear++;
-      const interval = setInterval(()=>{
-        if (currentYear >= 2017 ) {
-          clearInterval(interval)
+      map.addLayer(arcsLayer); // add arc layerx
+      map.style.stylesheet.layers.forEach(function(layer) {    //remove labels
+        if (layer.type === 'symbol') {
+            map.removeLayer(layer.id);
         }
-        map.removeLayer(String(currentYear));
-
-        currentYear += 1;
-        
-
-        currentLayer = renderDataByYear(currentYear)
-        // console.log(currentYear + 'interval')
-        
-        // currentYear++;
-        map.addLayer(currentLayer); // add arc layerx
-        
-      }, 2000)
-      
-    //   map.style.stylesheet.layers.forEach(function(layer) {    //remove labels
-    //     if (layer.type === 'symbol') {
-    //         map.removeLayer(layer.id);
-    //     }
-    //  });
+     });
     });
 
-    // function animateArcs(layer) {
-    //     var coef = 0.001;
-    //     const animationInterval = setInterval(()=> {
-    //     coef += 0.005;
-    //     if (coef >= 1.0) {
-    //         clearInterval(animationInterval);
-    //     }
-    //     layer.setProps({coef});
-    //     }, 100);
-    // }
+    function animateArcs(layer) {
+        var coef = 0.001;
+        const animationInterval = setInterval(()=> {
+        coef += 0.005;
+        if (coef >= 1.0) {
+            clearInterval(animationInterval);
+        }
+        layer.setProps({coef});
+        }, 100);
+    }
 
-    // animateArcs(arcsLayer)
+    animateArcs(arcsLayer)
 
     
   </script>

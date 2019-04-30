@@ -41,11 +41,9 @@
 
     // Data
     const CITIES = [
-      {"city":"San Francisco","state":"California","latitude":37.7751,"longitude":-122.4193},
-      {"city":"New York","state":"New York","latitude":40.6643,"longitude":-73.9385},
-      {"city":"Los Angeles","state":"California","latitude":34.051597,"longitude":-118.244263},
-      {"city":"London","state":"United Kingdom","latitude":51.5074,"longitude":-0.1278},
-      {"city":"Hyderabad","state":"India","latitude":17.3850,"longitude":78.4867}
+      {"city":"china","state":"beijing","latitude":40.084152,"longitude":116.592735},
+      {"city":"china","state":"shanghai","latitude":31.14337,"longitude":121.805199},
+      {"city":"china","state":"guangzhou","latitude":23.392429,"longitude":113.298698}
     ];
 
     // Deck canvas
@@ -62,7 +60,7 @@
           data: CITIES,
           getPosition: d => [d.longitude, d.latitude],
           getColor: [255, 180, 0],
-          radiusMinPixels: 10
+          radiusMinPixels: 7
         })
       ]
     });
@@ -81,9 +79,9 @@
           viewState: {
             longitude: d.longitude,
             latitude: d.latitude,
-            zoom: 10,
+            zoom: 7,
             transitionInterpolator: new FlyToInterpolator(),
-            transitionDuration: 5000
+            transitionDuration: 3000
           }
         })
       });

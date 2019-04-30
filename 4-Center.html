@@ -1,96 +1,71 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+<!-- use babel so that we can use arrow functions and other goodness in this block! -->
+<script src="//unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<script src="//unpkg.com/d3@5.5.0"></script>
+<script src="//unpkg.com/d3fc@14.0.1"></script>
+
 <style>
-
-.bar {
-  fill: purple;
+#chart {
+  width: 100%;
+  height: 500px;
 }
 
-.bar:hover {
-  fill: blue;
-}
-
-.axis {
-  font: 10px sans-serif;
-}
-
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
+.x-axis .domain {
   display: none;
 }
 
-</style>
-<body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
-<script>
-
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
-
-var y = d3.scale.linear()
-    .range([height, 0]);
-
-var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom");
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10, "%");
-
-var svg = d3.select("body").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv("data/changeFq.csv", type, function(error, data) {
-  if (error) throw error;
-
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-
-  svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(-3," + height + ")")
-      .call(xAxis);
-
-  svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end")
-      .text("Frequency");
-
-  svg.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-  		.attr("y", 500)
-  		.transition().duration(1000)
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-});
-
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+.bar-label {
+  text-anchor: middle;
+  font-size: 12px;
+  fill: black;
 }
+</style>
 
+<div id="chart"></div>
+
+<script type='text/babel'>
+
+const isVowel = (letter) => 'AEIOU'.indexOf(letter) !== -1;
+
+var barSeries = fc.autoBandwidth(fc.seriesSvgBar())
+    .crossValue(d => d.letter)
+		.align('left')
+    .mainValue(d => d.frequency)
+    .decorate((selection) => {
+      selection.select('path')
+        .style('fill', d => isVowel(d.letter) ? 'indianred' : 'steelblue');
+      
+      // selection.enter()
+      //   .append('text')
+      //   .attr('class', 'bar-label')
+      //   .attr('transform', 'translate(0, -5)')
+      //   .text(d => d3.format('.1%')(d.frequency));
+    });
+  
+d3.csv("data/changeFq.csv", d => {
+    d.frequency = +d.frequency;
+    return d;
+  }).then(data => {
+
+  var yExtent = fc.extentLinear()
+    .accessors([d => d.frequency])
+    .pad([0, 0.1])
+    .include([0]);
+
+  var chart = fc.chartSvgCartesian(
+        d3.scaleBand(),
+        d3.scaleLinear()
+      )
+      .xDomain(data.map(d => d.letter))
+      .xPadding(0.2)
+      .yDomain(yExtent(data))
+      .yTicks(10, '%')
+      .yOrient('left')
+      .plotArea(barSeries);
+
+  d3.select('#chart')
+      .datum(data)
+      .call(chart);
+});
 </script>
