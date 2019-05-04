@@ -1,0 +1,229 @@
+Source,Min Stolen,Max-Min,Entity,Median Stolen,MethodOfLeak,Max Stolen,Número de registros,RecordsStolen,Year
+http://www.bbc.co.uk/news/world-us-canada-33120405,40000,69960000,US Office of Personnel Management (2nd Breach),2700000,hacked,70000000,1,21500000,2015
+http://www.theguardian.com/technology/2015/aug/10/carphone-warehouse-uk-data-watchdog-investigating-customer-hack,40000,69960000,CarPhone Warehouse,2700000,hacked,70000000,1,2700000,2015
+http://wikileaks.org/cablegate.html,40000,3260000,Embassy Cables,400000,inside job,3300000,1,300000,2010
+http://www.securityweek.com/20-million-people-fall-victim-south-korea-data-leak,52000,144948000,Korea Credit Bureau,4000000,inside job,145000000,1,20000000,2014
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,40000,3260000,"South Shore Hospital, Massachusetts",400000,lost / stolen media,3300000,1,800000,2010
+http://www.csoonline.com/article/3017171/security/database-leak-exposes-3-3-million-hello-kitty-fans.html,40000,69960000,Sanrio,2700000,configuration error,70000000,1,3300000,2015
+http://uk.reuters.com/article/us-usa-voters-breach-idUKKBN0UB1E020151229,10,190999990,Voter Database,5095198,configuration error,191000000,1,191000000,2016
+https://techcrunch.com/2016/07/29/clinton-campaign-reportedly-breached-by-hackers/,10,190999990,Clinton campaign,5095198,hacked,191000000,1,5000000,2016
+http://www.zdnet.com/article/over-25-million-accounts-stolen-after-mail-ru-forums-raided-by-hackers/,10,190999990,Mail. ru,5095198,hacked,191000000,1,25000000,2016
+http://www.businessinsider.com/turkish-citizenship-database-allegedly-hacked-and-leaked-2016-4?r=UK&IR=T,10,190999990,Turkish citizenship database,5095198,leak,191000000,1,49611709,2016
+http://www.shareconference.net/en/defense/personal-data-more-5-million-citizens-serbia-unlawfully-published,10,190999990,Privatization Agency of the Republic of Serbia,5095198,leak,191000000,1,5190396,2016
+"http://www.pcmag.com/article2/0,2817,2390683,00.asp",35000,76965000,US Law Enforcement,1000000,accidentally published,77000000,1,130000,2011
+http://bits.blogs.nytimes.com/2011/12/27/questions-about-motives-behind-stratfor-hack/,35000,76965000,Stratfor,1000000,accidentally published,77000000,1,900000,2011
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,90000,93910000,Hannaford Brothers Supermarket Chain,3000000,hacked,94000000,1,4200000,2007
+http://www.zdnet.com/wi-fi-hack-caused-tk-maxx-security-breach-3039286991/,90000,93910000,TK / TJ Maxx,3000000,hacked,94000000,1,94000000,2007
+http://www.darkreading.com/security/perimeter-security/211201111/hacker-steals-data-on-18m-auction-customers-in-south-korea.html,50000,17950000,Auction.co.kr,1900000,hacked,18000000,1,18000000,2008
+http://www.msnbc.msn.com/id/30645920/ns/technology_and_science-security/t/hackers-breach-uc-berkeley-computers/#.UFjFaKRYtmg,72000,129928000,University of California Berkeley,1100000,hacked,130000000,1,160000,2009
+http://www.computerworld.com/s/article/9175783/Network_Solutions_sites_hacked_again,72000,129928000,Network Solutions,1100000,hacked,130000000,1,600000,2009
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,40000,3260000,US Federal Reserve Bank of Cleveland,400000,hacked,3300000,1,400000,2010
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,40000,3260000,Betfair,400000,hacked,3300000,1,2300000,2010
+http://www.pcworld.com/article/229891/Citigroup_Hack_Nets_Over_200k_in_Stolen_Customer_Details.html,35000,76965000,Citigroup,1000000,hacked,77000000,1,400000,2011
+http://www.computerworld.com/s/article/9216343/Sony_cuts_off_Sony_Online_Entertainment_service_after_hack,35000,76965000,Sony Online Entertainment,1000000,hacked,77000000,1,24600000,2011
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Restaurant Depot,1000000,hacked,77000000,1,200000,2011
+http://www.bbc.co.uk/news/technology-15690187,35000,76965000,Steam,1000000,hacked,77000000,1,35000000,2011
+http://www.washingtonpost.com/business/technology/faq-the-global-payments-hack/2012/04/02/gIQAIHLLrS_story.html,30000,199970000,Global Payments,6500000,hacked,200000000,1,1500000,2012
+http://www.privacyrights.org/data-breach,16000,64984000,Central Hudson Gas & Electric,750000,hacked,65000000,1,100000,2013
+http://fortune.com/2014/12/19/staples-cards-affected-breach/,52000,144948000,Staples,4000000,hacked,145000000,1,1200000,2014
+http://www.reuters.com/article/2015/10/02/us-tmobile-dataprotection-idUSKCN0RV5PL20151002,40000,69960000,Experian / T-mobile,2700000,hacked,70000000,1,15000000,2015
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,200000,26300000,Countrywide Financial Corp,10500000,inside job,26500000,1,2600000,2006
+http://www.pcworld.com/article/135117/article.html,90000,93910000,Fidelity National Information Services,3000000,inside job,94000000,1,8500000,2007
+https://www.wikileaks.org/plusd/about/,16000,64984000,Kissinger Cables,750000,inside job,65000000,1,1700000,2013
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,50000,17950000,University of Miami,1900000,lost / stolen computer,18000000,1,2100000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Health Net - IBM,1000000,lost / stolen media,77000000,1,1900000,2011
+http://news.cnet.com/8301-1009_3-57449325-83/what-the-password-leaks-mean-to-you-faq,30000,199970000,"LinkedIn, eHarmony, Last.fm",6500000,accidentally published,200000000,1,8000000,2012
+http://www.pcworld.com/article/252647/reborn_lulzsec_claims_hack_of_dating_site_for_military_personnel.html,30000,199970000,Militarysingles.com,6500000,accidentally published,200000000,1,180000,2012
+http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/breachtool.html,40000,3260000,Puerto Rico Department of Health,400000,hacked,3300000,1,500000,2010
+http://www.phiprivacy.net/?p=5743,40000,3260000,"Ankle & foot Center of Tampa Bay, Inc.",400000,hacked,3300000,1,160000,2010
+http://www.zdnet.com/blog/gamification/sega-1-3-million-customer-records-hacked-lulzsec-promises-retribution/481,35000,76965000,Sega,1000000,hacked,77000000,1,1300000,2011
+http://nakedsecurity.sophos.com/2013/04/27/livingsocial-hacked-50-million-affected/,16000,64984000,Living Social,750000,hacked,65000000,1,50000000,2013
+http://krebsonsecurity.com/2015/07/online-cheating-site-ashleymadison-hacked/,40000,69960000,AshleyMadison.com,2700000,hacked,70000000,1,37000000,2015
+http://www.thestate.com/2012/04/20/2241321/personal-information-of-more-than.html#.UFpUVqRYtmg,30000,199970000,South Carolina Government,6500000,inside job,200000000,1,200000,2012
+http://www.spartanburgregional.com/Pages/PatientNotice.aspx,35000,76965000,Spartanburg Regional Healthcare System,1000000,lost / stolen computer,77000000,1,400000,2011
+http://databreachinvestigation.blogspot.com/2011/04/thief-gets-away-with-eisenhower-medical.html,35000,76965000,Eisenhower Medical Center,1000000,lost / stolen computer,77000000,1,500000,2011
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Tricare,1000000,lost / stolen computer,77000000,1,4900000,2011
+http://www.privacyrights.org/data-breach,16000,64984000,"Crescent Health Inc., Walgreens",750000,lost / stolen computer,65000000,1,100000,2013
+http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/breachtool.html,40000,3260000,New York City Health & Hospitals Corp.,400000,lost / stolen media,3300000,1,1700000,2010
+http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/breachtool.html,40000,3260000,"Triple-S Salud, Inc.",400000,lost / stolen media,3300000,1,400000,2010
+http://www.phiprivacy.net/?tag=lincoln-medical-and-mental-health-center,40000,3260000,Lincoln Medical & Mental Health Center,400000,lost / stolen media,3300000,1,130000,2010
+http://www.healthcareinfosecurity.com/chicago-breach-affects-180000-a-2496,40000,3260000,"Emergency Healthcare Physicians, Ltd.",400000,lost / stolen media,3300000,1,180000,2010
+http://zerosecurity.org/technews/past-three-years-over-21m-medical-record-breaches/,35000,76965000,Nemours Foundation,1000000,lost / stolen media,77000000,1,1100000,2011
+http://www.databreaches.net/?p=19198,35000,76965000,Accendo Insurance Co.,1000000,poor security,77000000,1,180000,2011
+http://www.hhs.gov/ocr/privacy/hipaa/administrative/breachnotificationrule/breachtool.html,30000,199970000,Emory Healthcare,6500000,poor security,200000000,1,300000,2012
+http://news.bbc.co.uk/2/hi/americas/7395295.stm,50000,17950000,Chile Ministry Of Education,1900000,accidentally published,18000000,1,6000000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,US Army,1000000,accidentally published,77000000,1,50000,2011
+https://www.facebook.com/notes/facebook-security/important-message-from-facebooks-white-hat-program/10151437074840766,16000,64984000,Facebook,750000,accidentally published,65000000,1,6000000,2013
+http://www.wired.com/threatlevel/2008/07/ameritrade-hack/,90000,93910000,TD Ameritrade,3000000,hacked,94000000,1,6300000,2007
+http://money.cnn.com/2003/02/18/technology/creditcards/,50000,17950000,Data Processors International,1900000,hacked,18000000,1,5000000,2008
+http://www.pcworld.com/article/231215/lulzsec_a_short_history_of_hacking.html,35000,76965000,Bethesda Game Studios,1000000,hacked,77000000,1,200000,2011
+http://news.cnet.com/8301-27080_3-20068386-245/sf-utilities-agency-warns-of-potential-breach/,35000,76965000,San Francisco Public Utilities Commission,1000000,hacked,77000000,1,180000,2011
+http://www.ehackingnews.com/2011/12/hackers-compromised-38-million-chinese.html,35000,76965000,178.com,1000000,hacked,77000000,1,10000000,2011
+http://www.zdnet.com/blog/security/chinese-hacker-arrested-for-leaking-6-million-logins/11064,35000,76965000,China Software Developer Network,1000000,hacked,77000000,1,6000000,2011
+"http://www.scmagazine.com.au/News/349585,28-million-clear-text-passwords-found-after-tianya65279-hack.aspx",35000,76965000,Tianya,1000000,hacked,77000000,1,28000000,2011
+"http://www.pcmag.com/article2/0,2817,2387186,00.asp",35000,76965000,Writerspace.com,1000000,hacked,77000000,1,62000,2011
+http://it.slashdot.org/story/12/07/12/1243217/nearly-half-a-million-yahoo-passwords-leaked-updated?utm_source=feedburnerGoogle+Reader&utm_medium=feed&utm_campaign=Feed%3A+Slashdot%2Fslashdot+%28Slashdot%29&utm_content=Google+Reader,30000,199970000,Yahoo Voices,6500000,hacked,200000000,1,500000,2012
+http://money.cnn.com/2016/05/19/technology/linkedin-hack/,30000,199970000,LinkedIn,6500000,hacked,200000000,1,117000000,2012
+http://www.forbes.com/sites/andygreenberg/2012/07/23/eight-million-passwords-spilled-from-gaming-site-gamigo-months-after-breach/,30000,199970000,Gamigo,6500000,hacked,200000000,1,8000000,2012
+http://www.telegraph.co.uk/technology/2016/08/31/dropbox-hackers-stole-70-million-passwords-and-email-addresses/,30000,199970000,Dropbox,6500000,hacked,200000000,1,68700000,2012
+http://www.zdnet.com/article/hackers-stole-43-million-last-fm-account-details-in-2012-breach/,30000,199970000,Last.fm,6500000,hacked,200000000,1,43500000,2012
+http://www.guardian.co.uk/technology/2013/jul/22/apple-developer-site-hacked,16000,64984000,Apple,750000,hacked,65000000,1,300000,2013
+http://www.reuters.com/article/2013/05/17/us-yahoojapan-idUSBRE94G0P620130517,16000,64984000,Yahoo Japan,750000,hacked,65000000,1,22000000,2013
+https://motherboard.vice.com/read/hackers-stole-68-million-passwords-from-tumblr-new-analysis-reveals,16000,64984000,Tumblr,750000,hacked,65000000,1,65000000,2013
+http://arstechnica.com/security/2013/05/drupal-org-resets-login-credentials-after-hack-exposes-password-data/,16000,64984000,Drupal,750000,hacked,65000000,1,1000000,2013
+http://www.wired.co.uk/news/archive/2013-02/02/twitter-hacked,16000,64984000,Twitter,750000,hacked,65000000,1,250000,2013
+http://www.wired.co.uk/news/archive/2013-03/04/evernote-hacked,16000,64984000,Evernote,750000,hacked,65000000,1,50000000,2013
+http://nakedsecurity.sophos.com/2013/04/05/scribd-worlds-largest-online-library-admits-to-network-intrusion-password-breach/,16000,64984000,Scribd,750000,hacked,65000000,1,500000,2013
+http://blog.aol.com/2014/04/28/aol-security-update/,52000,144948000,AOL,4000000,hacked,145000000,1,2400000,2014
+http://www.theguardian.com/technology/2014/jun/16/dominos-pizza-ransom-hack-data,52000,144948000,Dominios Pizzas (France),4000000,hacked,145000000,1,600000,2014
+http://www.wired.co.uk/news/archive/2013-11/13/mac-rumours-forums-hacked,52000,144948000,MacRumours.com,4000000,hacked,145000000,1,900000,2014
+http://carefirstanswers.com/,40000,69960000,Carefirst,2700000,hacked,70000000,1,1100000,2015
+http://www.channel4.com/news/adult-friendfinder-dating-hack-internet-dark-web,40000,69960000,Adult Friend Finder,2700000,hacked,70000000,1,3900000,2015
+https://thestack.com/security/2015/12/15/mackeeper-discloses-13-million-mac-users-details-with-poor-hash-protection/,40000,69960000,Kromtech,2700000,hacked,70000000,1,13000000,2015
+http://news.softpedia.com/news/syrian-government-hacked-43-gb-of-data-spilled-online-by-hacktivists-502765.shtml,10,190999990,Syrian government,5095198,hacked,191000000,1,274477,2016
+http://venturebeat.com/2016/08/02/hackers-break-into-telegram-revealing-15-million-users-phone-numbers/,10,190999990,Telegram,5095198,hacked,191000000,1,15000000,2016
+http://betanews.com/2016/07/15/ubuntu-linux-forums-hacked/,10,190999990,Linux Ubuntu forums,5095198,hacked,191000000,1,2000000,2016
+http://motherboard.vice.com/read/427-million-myspace-passwords-emails-data-breach,10,190999990,MySpace,5095198,hacked,191000000,1,164000000,2016
+https://torrentfreak.com/utorrent-forums-hacked-passwords-compromised-160608/,10,190999990,uTorrent,5095198,hacked,191000000,1,35000,2016
+https://thestack.com/security/2016/04/08/childbirth-charity-hack-leaks-15000-expectant-parents-data/,10,190999990,National Childbirth Trust,5095198,hacked,191000000,1,15000,2016
+http://motherboard.vice.com/read/another-day-another-hack-7-million-emails-and-hashed-passwords-for-minecraft,10,190999990,Minecraft,5095198,hacked,191000000,1,7000000,2016
+http://arstechnica.com/security/2016/03/after-verizon-breach-1-5-million-customer-records-put-up-for-sale/,10,190999990,Verizon,5095198,hacked,191000000,1,100000,2016
+http://usatoday30.usatoday.com/tech/news/computersecurity/2007-12-30-data_n.htm,90000,93910000,Dai Nippon Printing,3000000,inside job,94000000,1,8600000,2007
+http://money.cnn.com/2004/06/23/technology/aol_spam/,92000000,0,AOL,92000000,"inside job, hacked",92000000,1,92000000,2004
+http://www.datalossdb.org,200000,26300000,"T-Mobile, Deutsche Telecom",10500000,lost / stolen media,26500000,1,17000000,2006
+http://news.bbc.co.uk/2/hi/uk_news/7103911.stm,90000,93910000,UK Revenue & Customs,3000000,lost / stolen media,94000000,1,25000000,2007
+http://www.wctv.tv/news/headlines/28132494.html?storySection=comments,50000,17950000,BNY Mellon Shareowner Services,1900000,lost / stolen media,18000000,1,12500000,2008
+http://money.cnn.com/2015/05/26/pf/taxes/irs-website-data-hack/index.html,40000,69960000,IRS,2700000,poor security,70000000,1,100000,2015
+http://blog.uber.com/2-27-15,40000,69960000,Uber,2700000,poor security,70000000,1,50000,2015
+http://techcrunch.com/2015/03/27/slack-got-hacked/,40000,69960000,Slack,2700000,poor security,70000000,1,500000,2015
+http://blog.code.org/post/140938173013/some-volunteer-email-addresses-compromised,10,190999990,Code.org,5095198,poor security,191000000,1,10,2016
+http://motherboard.vice.com/read/another-day-another-hack-100-million-accounts-for-vk-russias-facebook,10,190999990,VK,5095198,hacked,191000000,1,100544934,2016
+http://www.dailydot.com/politics/invest-bank-hacker-buba/,40000,69960000,Invest Bank,2700000,hacked,70000000,1,40000,2015
+http://premeraupdate.com/,40000,69960000,Premera,2700000,hacked,70000000,1,11000000,2015
+https://theintercept.com/2015/11/11/securus-hack-prison-phone-company-exposes-thousands-of-calls-lawyers-and-clients/,40000,69960000,Securus Technologies,2700000,hacked,70000000,1,70000000,2015
+http://www.theguardian.com/technology/2015/dec/02/vtech-hack-us-hong-kong-investigate-children-exposed,40000,69960000,VTech,2700000,hacked,70000000,1,6400000,2015
+http://blog.trendmicro.com/trendlabs-security-intelligence/55m-registered-voters-risk-philippine-commission-elections-hacked/,10,190999990,Philippinesâ€™ Commission on Elections,5095198,hacked,191000000,1,55000000,2016
+http://www.bbc.co.uk/news/world-europe-36645519,10,190999990,Mutuelle Generale de la Police,5095198,leak,191000000,1,112000,2016
+http://www.infoworld.com/article/2615754/cyber-crime/south-carolina-reveals-massive-data-breach-of-social-security-numbers--credit-cards.html,30000,199970000,South Carolina State Dept. of Revenue,6500000,hacked,200000000,1,3600000,2012
+https://www.bannerhealth.com/news/2016/08/banner-health-identifies-cyber-attack#,10,190999990,Banner Health,5095198,hacked,191000000,1,3700000,2016
+http://abcnews.go.com/Technology/wireStory/wendys-1000-restaurants-affected-hack-40407208,10,190999990,Wendy's,5095198,hacked,191000000,1,1025,2016
+https://thestack.com/security/2016/06/29/2-million-person-terror-database-leaked-online/,10,190999990,World Check,5095198,leak,191000000,1,2200000,2016
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,40000,3260000,Yale University,400000,accidentally published,3300000,1,40000,2010
+http://www.informationweek.com/security/attacks/texas-data-breach-exposed-35-million-rec/229401489?queryText=Texas%20data%20leak,35000,76965000,State of Texas,1000000,accidentally published,77000000,1,3500000,2011
+http://www.rawstory.com/rs/2012/04/26/texas-attorney-general-exposes-millions-of-voters-social-security-numbers/,30000,199970000,Office of the Texas Attorney General,6500000,accidentally published,200000000,1,6500000,2012
+http://www.europarl.europa.eu/sides/getDoc.do?pubRef=-//EP//TEXT+WQ+E-2013-001939+0+DOC+XML+V0//EN&language=nl,16000,64984000,NMBS,750000,accidentally published,65000000,1,1500000,2013
+http://www.theregister.co.uk/2008/12/29/rbs_worldpay_breach/,50000,17950000,RBS Worldpay,1900000,hacked,18000000,1,1500000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,40000,3260000,Ohio State University,400000,hacked,3300000,1,800000,2010
+http://www.guardian.co.uk/technology/2010/dec/13/gawker-hackers-passwords-twitter-wikileaks?INTCMP=SRCH,40000,3260000,Gawker.com,400000,hacked,3300000,1,1500000,2010
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,University of Wisconsin - Milwaukee,1000000,hacked,77000000,1,73000,2011
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Southern California Medical-Legal Consultants,1000000,hacked,77000000,1,300000,2011
+"http://www.pcmag.com/article2/0,2817,2388200,00.asp",35000,76965000,Washington Post,1000000,hacked,77000000,1,1300000,2011
+http://www.reuters.com/article/2011/11/26/us-korea-hacking-nexon-idUSTRE7AP09H20111126,35000,76965000,Nexon Korea Corp,1000000,hacked,77000000,1,13200000,2011
+https://us.battle.net/support/en/article/important-security-update-faq#5,30000,199970000,Blizzard,6500000,hacked,200000000,1,14000000,2012
+http://www.wired.co.uk/news/archive/2012-11/22/greece-id-theft,30000,199970000,Greek government,6500000,hacked,200000000,1,9000000,2012
+http://www.koreatimes.co.kr/www/news/biz/2012/07/113_116143.html,30000,199970000,KT Corp.,6500000,hacked,200000000,1,8700000,2012
+http://www.forbes.com/sites/andygreenberg/2012/01/15/zappos-says-hackers-accessed-24-million-customers-account-details/,30000,199970000,Zappos,6500000,hacked,200000000,1,24000000,2012
+http://www.privacyrights.org/data-breach,16000,64984000,Kirkwood Community College,750000,hacked,65000000,1,130000,2013
+http://www.joystiq.com/2013/07/05/club-nintendo-japan-hacked/,16000,64984000,Nintendo,750000,hacked,65000000,1,250000,2013
+http://www.reuters.com/article/2013/05/09/us-usa-hack-washingtonstate-idUSBRE9480YY20130509,16000,64984000,Washington State court system,750000,hacked,65000000,1,160000,2013
+http://www.forbes.com/sites/andygreenberg/2012/01/15/zappos-says-hackers-accessed-24-million-customers-account-details/,16000,64984000,SnapChat,750000,hacked,65000000,1,4700000,2013
+http://www.nytimes.com/2014/01/24/business/neiman-marcus-breach-affected-1-1-million-cards.html,52000,144948000,Neiman Marcus,4000000,hacked,145000000,1,1100000,2014
+http://online.wsj.com/articles/japan-airlines-reports-hacker-attack-1412053828,52000,144948000,Japan Airlines,4000000,hacked,145000000,1,800000,2014
+http://www.washingtonpost.com/world/national-security/chinese-hackers-breach-federal-governments-personnel-office/2015/06/04/889c0e52-0af7-11e5-95fd-d580f1c5d44e_story.html?tid=hpModule_04941f10-8a79-11e2-98d9-3012c1cd8d1e,40000,69960000,US Office of Personnel Management,2700000,hacked,70000000,1,4000000,2015
+http://krebsonsecurity.com/2015/05/mobile-spy-software-maker-mspy-hacked-customer-data-leaked/,40000,69960000,MSpy,2700000,hacked,70000000,1,400000,2015
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,90000,93910000,Texas Lottery,3000000,inside job,94000000,1,90000,2007
+http://www.datalossdb.org,50000,17950000,GS Caltex,1900000,inside job,18000000,1,11100000,2008
+http://www.forbes.com/sites/andygreenberg/2010/10/22/wikileaks-reveals-the-biggest-classified-data-breach-in-history/,40000,3260000,Classified Iraq War documents,400000,inside job,3300000,1,400000,2010
+http://latimesblogs.latimes.com/money_co/2011/09/man-convicted-in-huge-countrywide-data-theft-gets-8-months-in-prison.html,35000,76965000,Countrywide Financial Corp,1000000,inside job,77000000,1,2500000,2011
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,30000,199970000,New York State Electric & Gas,6500000,inside job,200000000,1,1800000,2012
+http://bits.blogs.nytimes.com/2013/10/24/senator-intensifies-probe-of-data-brokers/?_php=true&_type=blogs&_r=0,30000,199970000,Court Ventures,6500000,inside job,200000000,1,200000000,2012
+http://gcn.com/Articles/2009/02/02/VA-data-breach-suit-settlement.aspx,200000,26300000,US Dept of Vet Affairs,10500000,lost / stolen computer,26500000,1,26500000,2006
+http://www.pcworld.com/article/137865/article.html,90000,93910000,Gap Inc,3000000,lost / stolen computer,94000000,1,800000,2007
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,50000,17950000,Stanford University,1900000,lost / stolen computer,18000000,1,72000,2008
+http://www.governmentsecurity.org/latest-security-news/laptop-theft-exposes-private-info-of-avmed-health-plansaapos-customers.html,72000,129928000,"AvMed, Inc.",1100000,lost / stolen computer,130000000,1,1200000,2009
+http://www.databreaches.net/?p=12611,40000,3260000,Colorado government,400000,lost / stolen computer,3300000,1,100000,2010
+http://www.simplysecurity.com/2011/11/30/sutter-health-sued-for-1-billion-following-data-breach/,35000,76965000,Sutter Medical Foundation,1000000,lost / stolen computer,77000000,1,4200000,2011
+http://www.privacyrights.org/data-breach,16000,64984000,Florida Department of Juvenile Justice,750000,lost / stolen computer,65000000,1,100000,2013
+http://www.privacyrights.org/data-breach,16000,64984000,Florida Courts,750000,lost / stolen computer,65000000,1,100000,2013
+http://www.nbcnews.com/id/7561268/,130000,39870000,Ameritrade Inc.,2050000,lost / stolen media,40000000,1,200000,2005
+http://news.bbc.co.uk/1/hi/uk_politics/7147715.stm,90000,93910000,Driving Standards Agency,3000000,lost / stolen media,94000000,1,3000000,2007
+http://www.computerweekly.com/news/2240104003/Hackney-NHS-trust-encrypts-IT-equipment-following-loss-of-child-data,90000,93910000,City and Hackney Teaching Primary Care Trust,3000000,lost / stolen media,94000000,1,160000,2007
+http://news.bbc.co.uk/1/hi/uk_politics/7147715.stm,90000,93910000,Driving Standards Agency,3000000,lost / stolen media,94000000,1,3000000,2007
+http://en.wikipedia.org/wiki/List_of_UK_government_data_losses,50000,17950000,UK Home Office,1900000,lost / stolen media,18000000,1,84000,2008
+http://news.bbc.co.uk/1/hi/england/gloucestershire/7639006.stm,50000,17950000,Service Personnel and Veterans Agency (UK),1900000,lost / stolen media,18000000,1,50000,2008
+http://www.mhs.net/pdf/release071112.pdf,35000,76965000,Memorial Healthcare System,1000000,lost / stolen media,77000000,1,100000,2011
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,30000,199970000,California Department of Child Support Services,6500000,lost / stolen media,200000000,1,800000,2012
+http://abcnews.go.com/Technology/story?id=2160425&page=1#.UFcROxgUwaA,130000,39870000,Automatic Data Processing,2050000,poor security,40000000,1,130000,2005
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Oregon Department of Motor Vehicles,1000000,poor security,77000000,1,1000000,2011
+http://news.iu.edu/releases/iu/2014/02/data-exposure-disclosure.shtml,16000,64984000,Indiana University,750000,poor security,65000000,1,150000,2013
+http://www.theguardian.com/technology/2014/aug/05/mozilla-leak-developer-email-addresses-passwords-firefox,52000,144948000,Mozilla,4000000,poor security,145000000,1,80000,2014
+http://www.buzzfeed.com/tomgara/sony-hack,52000,144948000,Sony Pictures,4000000,hacked,145000000,1,10000000,2014
+http://www.informationweek.co.uk/security/client/dropbox-admits-hack-adds-more-security-f/240004697,30000,199970000,Dropbox,6500000,hacked,200000000,1,30000,2012
+http://www.theguardian.com/business/2015/mar/29/british-airways-frequent-flyer-accounts-hacked,40000,69960000,British Airways,2700000,hacked,70000000,1,500000,2015
+http://status.ovh.net/?do=details&id=5070,16000,64984000,OVH,750000,hacked,65000000,1,500000,2013
+http://time.com/3151681/ups-hack/,52000,144948000,UPS,4000000,hacked,145000000,1,4000000,2014
+http://www.cityam.com/1406190300/ecb-website-hacked,52000,144948000,European Central Bank,4000000,hacked,145000000,1,4000000,2014
+http://blog.twitch.tv/2015/03/important-notice-about-your-twitch-account/,52000,144948000,Twitch.tv,4000000,hacked,145000000,1,10000000,2014
+http://www.theguardian.com/world/2015/mar/30/personal-details-of-world-leaders-accidentally-revealed-by-g20-organisers,40000,69960000,Australian Immigration Department,2700000,accidentally published,70000000,1,500000,2015
+http://forums.ubi.com/forumdisplay.php/495-Security-update-regarding-your-Ubisoft-account-please-create-a-new-password,16000,64984000,UbiSoft,750000,hacked,65000000,1,58000000,2013
+http://www.usatoday.com/story/cybertruth/2013/09/26/lexisnexis-dunn--bradstreet-altegrity-hacked/2878769/,52000,144948000,"D&B, Altegrity",4000000,hacked,145000000,1,1000000,2014
+http://www.bbc.co.uk/news/uk-34784980,40000,69960000,TalkTalk,2700000,hacked,70000000,1,160000,2015
+http://www.nydailynews.com/news/national/russians-ukrainian-charged-largest-hacking-spree-u-s-history-article-1.1408948,30000,199970000,Massive American business hack,6500000,hacked,200000000,1,160000000,2012
+http://www.zdnet.com/blog/security/3-million-bank-accounts-hacked-in-iran/11577,30000,199970000,Three Iranian banks,6500000,hacked,200000000,1,3000000,2012
+http://www.guardian.co.uk/news/datablog/2010/nov/29/wikileaks-cables-data,40000,3260000,US Military,400000,inside job,3300000,1,300000,2010
+http://news.bbc.co.uk/1/hi/uk_politics/7667507.stm,50000,17950000,UK Ministry of Defence,1900000,lost / stolen media,18000000,1,1700000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Massachusetts Government,1000000,poor security,77000000,1,200000,2011
+http://www.msnbc.msn.com/id/8260050/ns/technology_and_science-security/t/million-credit-cards-exposed/#.UFiz7aRYtmg,130000,39870000,Cardsystems Solutions Inc.,2050000,hacked,40000000,1,40000000,2005
+http://www.guardian.co.uk/technology/blog/2009/aug/24/hacking-law?INTCMP=SRCH,72000,129928000,Heartland,1100000,hacked,130000000,1,130000000,2009
+http://arstechnica.com/security/2013/07/hack-exposes-e-mail-addresses-password-data-for-2-million-ubuntu-forum-users/,16000,64984000,Ubuntu,750000,hacked,65000000,1,2000000,2013
+http://dealbook.nytimes.com/2014/10/02/jpmorgan-discovers-further-cyber-security-issues/?_php=true&_type=blogs&_r=0,52000,144948000,JP Morgan Chase,4000000,hacked,145000000,1,76000000,2014
+http://krebsonsecurity.com/2014/09/banks-credit-card-breach-at-home-depot/,52000,144948000,Home Depot,4000000,hacked,145000000,1,56000000,2014
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,90000,93910000,Compass Bank,3000000,inside job,94000000,1,1000000,2007
+http://www.securityweek.com/attacker-steals-data-2-million-vodafone-germany-customers,16000,64984000,Vodafone,750000,inside job,65000000,1,2000000,2013
+http://www.nytimes.com/2005/06/07/business/07data.html?pagewanted=all&_moc.semityn.www,130000,39870000,Citigroup,2050000,lost / stolen media,40000000,1,3900000,2005
+http://www.pcworld.com/article/131453/article.html,40000,3260000,JP Morgan Chase,400000,lost / stolen media,3300000,1,2600000,2010
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,35000,76965000,Morgan Stanley Smith Barney,1000000,lost / stolen media,77000000,1,35000,2011
+"http://news.cnet.com/8301-1009_3-57469944-83/formspring-disables-user-passwords-in-security-breach/?tag=mncol,txt",30000,199970000,Formspring,6500000,accidentally published,200000000,1,400000,2012
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,72000,129928000,Virginia Dept. Of Health,1100000,hacked,130000000,1,8300000,2009
+http://techcrunch.com/2009/12/14/rockyou-hack-security-myspace-facebook-passwords/,72000,129928000,RockYou!,1100000,hacked,130000000,1,32000000,2009
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,50000,17950000,University of Utah Hospitals & Clinics,1900000,lost / stolen media,18000000,1,2200000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,72000,129928000,Health Net,1100000,lost / stolen media,130000000,1,1500000,2009
+http://security-hack1.blogspot.com/2010/04/affinity-health-plan-alerts-public.html,72000,129928000,"Affinity Health Plan, Inc.",1100000,lost / stolen media,130000000,1,300000,2009
+http://www.techweekeurope.co.uk/news/nhs-researchers-lose-laptop-with-8m-patients-records-31810,35000,76965000,NHS,1000000,lost / stolen media,77000000,1,8300000,2011
+http://techcrunch.com/2006/08/06/aol-proudly-releases-massive-amounts-of-user-search-data/,200000,26300000,AOL,10500000,accidentally published,26500000,1,20000000,2006
+http://www.computerworld.com/s/article/9001150/KDDI_suffers_massive_data_breach,200000,26300000,KDDI,10500000,hacked,26500000,1,4000000,2006
+http://www.computerworld.com/s/article/9125078/CheckFree_warns_5_million_customers_after_hack,72000,129928000,CheckFree Corporation,1100000,hacked,130000000,1,5000000,2009
+http://www.guardian.co.uk/technology/2010/jun/10/apple-ipad-security-leak?INTCMP=SRCH,40000,3260000,AT&T,400000,hacked,3300000,1,100000,2010
+http://mashable.com/2011/05/31/sony-playstation-services-return/,35000,76965000,Sony PSN,1000000,hacked,77000000,1,77000000,2011
+http://mashable.com/2011/06/02/sony-pictures-hacked/,35000,76965000,Sony Pictures,1000000,hacked,77000000,1,1000000,2011
+http://my.chicagotribune.com/#section/-1/article/p2p-80265168/,52000,144948000,Ebay,4000000,hacked,145000000,1,145000000,2014
+http://thenextweb.com/google/2014/09/10/4-93-million-gmail-usernames-passwords-published-google-says-evidence-systems-compromised/,52000,144948000,Gmail,4000000,hacked,145000000,1,5000000,2014
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,50000,17950000,AT&T,1900000,lost / stolen computer,18000000,1,100000,2008
+https://medium.com/@vijayp/f6bc289679a1,52000,144948000,New York Taxis,4000000,poor security,145000000,1,52000,2014
+http://panamapapers.sueddeutsche.de/articles/56febff0a1bb8d3c3495adf4/,10,190999990,Mossack Fonseca,5095198,leak,191000000,1,11500000,2016
+http://infowatch.com/node/1289,50000,17950000,Norwegian Tax Authorities,1900000,accidentally published,18000000,1,4000000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,50000,17950000,Jefferson County,1900000,accidentally published,18000000,1,1600000,2008
+http://news.cnet.com/8301-1009_3-57505330-83/antisec-claims-to-have-snatched-12m-apple-device-ids-from-fbi/,30000,199970000,Apple,6500000,accidentally published,200000000,1,12400000,2012
+http://boingboing.net/2013/05/23/terracom-and-yourtel-threaten.html,16000,64984000,TerraCom & YourTel,750000,accidentally published,65000000,1,180000,2013
+http://news.bbc.co.uk/1/hi/6956349.stm,90000,93910000,Monster.com,3000000,hacked,94000000,1,1600000,2007
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,72000,129928000,Virginia Prescription Monitoring Program,1100000,hacked,130000000,1,500000,2009
+http://www.fosters.com/apps/pbcs.dll/article?AID=/20110120/GJNEWS_01/701209744,40000,3260000,"Seacoast Radiology, PA",400000,hacked,3300000,1,200000,2010
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,30000,199970000,Medicaid,6500000,hacked,200000000,1,800000,2012
+http://www.wired.co.uk/news/archive/2013-05/22/south-africa-whistleblower-leak,16000,64984000,South Africa police,750000,hacked,65000000,1,16000,2013
+http://krebsonsecurity.com/2013/09/data-broker-giants-hacked-by-id-theft-service/,16000,64984000,ssndob.ms,750000,hacked,65000000,1,4000000,2013
+http://money.cnn.com/2014/08/18/technology/security/hospital-chs-hack/,52000,144948000,Community Health Services,4000000,hacked,145000000,1,4500000,2014
+http://www.anthemfacts.com/faq,10,190999990,Anthem,5095198,hacked,191000000,1,80000000,2016
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,50000,17950000,Starbucks,1900000,lost / stolen computer,18000000,1,100000,2008
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,72000,129928000,US National Guard,1100000,lost / stolen computer,130000000,1,130000,2009
+http://news.cnet.com/Laptop-with-HP-employee-data-stolen/2100-7348_3-6052964.html,200000,26300000,Hewlett Packard,10500000,lost / stolen media,26500000,1,200000,2006
+http://www.scmagazine.com/thief-steals-57-hard-drives-from-bluecross-blueshield-of-tennessee/article/162178/,72000,129928000,Blue Cross Blue Shield of Tennessee,1100000,lost / stolen media,130000000,1,1000000,2009
+http://www.idtheftcenter.org/artman2/publish/lib_survey/ITRC_2008_Breach_List.shtml,72000,129928000,US Dept of Defense,1100000,lost / stolen media,130000000,1,72000,2009
+http://www.wired.com/threatlevel/2009/10/probe-targets-archives-handling-of-data-on-70-million-vets/,72000,129928000,US Military,1100000,lost / stolen media,130000000,1,76000000,2009
+http://www.foxnews.com/us/2010/03/26/student-loan-company-data-m-people-stolen/,40000,3260000,Educational Credit Management Corp,400000,lost / stolen media,3300000,1,3300000,2010
+http://healthitsecurity.com/2013/08/27/advocate-medical-group-endures-massive-data-breach/,16000,64984000,Advocate Medical Group,750000,lost / stolen media,65000000,1,4000000,2013
+http://www.guelphmercury.com/news-story/2200845-honda-canada-hit-by-online-security-breach-283-000-car-owners-personal-data-stolen/,35000,76965000,Honda Canada,1000000,poor security,77000000,1,300000,2011
+http://news.softpedia.com/news/Citi-Exposes-Details-of-150-000-Individuals-Who-Went-into-Bankruptcy-369979.shtml,16000,64984000,Citigroup,750000,poor security,65000000,1,150000,2013
+http://www.reuters.com/article/2013/07/18/net-us-nasdaq-cybercrime-website-idUSBRE96H1F520130718,52000,144948000,NASDAQ,4000000,hacked,145000000,1,500000,2014
+http://www.theguardian.com/technology/2015/jul/06/hacking-team-hacked-firm-sold-spying-tools-to-repressive-regimes-documents-claim,40000,69960000,Hacking Team,2700000,hacked,70000000,1,500000,2015
+http://helpx.adobe.com/x-productkb/policy-pricing/customer-alert.html,16000,64984000,Adobe,750000,hacked,65000000,1,36000000,2013
+"http://www.chicagotribune.com/news/sns-rt-us-target-breach-20131218,0,3434295.story",52000,144948000,Target,4000000,hacked,145000000,1,70000000,2014

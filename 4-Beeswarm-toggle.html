@@ -1,0 +1,91 @@
+<!DOCTYPE html>       
+<head>     
+  <meta charset="utf-8"> 
+  <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
+  <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>  
+</head>
+<style>
+    body{
+        width: 75vw;
+    }
+</style>
+<body>
+   <div>
+    <h1>吞吐量变化</h1>
+  </div>
+  <script> 
+       
+    var width = 960;
+    var height = 360;  
+    var margin = {top: 20, right: 10, bottom: 20, left: 10};
+    var offset = 50;
+    
+    var svg = d3.select("body").append("svg")
+        .attr("width", width)  
+        .attr("height", height);
+
+    d3.csv("data/BillData2.csv", type).then(function(data){
+        draw(data);
+    });
+
+    function draw(data){
+
+        //set range of scale
+        var x = d3.scaleLinear().rangeRound([0+offset, width-offset]);
+
+        //set domain of scale
+        x.domain(d3.extent(data, function(d,i) { return Number(data[i].Value); }));
+
+        var simulation = d3.forceSimulation(data)
+            .force("x", d3.forceX(function(d,i) { return x(Number(data[i].Value)); }).strength(1))
+            .force("y", d3.forceY(height / 2))  
+            .force("collide", d3.forceCollide(function(d,i) { return data[i].Random*3.2; }))
+                .stop();
+
+        //console.log(data)
+        for (var i = 0; i < 10000; ++i) simulation.tick();
+        
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        svg.selectAll("body").append("g").data(data).enter()
+                .append("circle") 
+            .attrs({
+                        r: 2,
+                        cx: function(d,i) {return x(data[i].Value);},         
+                        cy: height/2})
+                .transition()
+                .ease(d3.easeElastic) 
+            .duration(5000)
+                    .delay(function(d,i) { return i*3+1000;})
+                .attr("r",  function(d,i) { return data[i].Random*2; })
+            .attr("cx", function(d,i) { return data[i].x; })
+            .attr("cy", function(d,i) { return data[i].y; }) 
+                .attr("stroke","white");
+
+        
+        svg.selectAll("circle")
+            .transition()
+            .delay(function(d,i){return 1250+Math.random()*500;})
+            .ease(d3.easeQuadInOut) 
+                .style("fill", function(d,i) {return color(i)})  //"rgb(103,0,117)";
+      
+        var xAxis = d3.axisBottom(x).ticks(10, ".0s");
+
+        d3.select('svg').append('g')
+        .attr('transform', 'translate(0, '+margin.top+')')
+        .transition() 
+        .call(xAxis);
+
+        console.log(data)
+    }
+
+     function type(d) {
+        // if (!d.value) return;
+        d.Value = +d.Value*1;
+        d.Random = +d.Random;
+        return d;
+        }
+
+    
+  </script>
+</body>

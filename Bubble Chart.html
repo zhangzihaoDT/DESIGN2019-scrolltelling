@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
+  <script src="https://d3js.org/d3-queue.v3.min.js"></script>
+  <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+  <style>
+    body { margin:0;position:fixed;top:0;right:0;bottom:0;left:0; }
+    svg { margin: 0 auto; display: block; }
+  </style>
+</head>
+
+<body>
+  <svg width="600" height="600"></svg>
+  <script>
+    var svg = d3.select("svg"),
+        width = +svg.attr('width'),
+        height = +svg.attr('height');
+    
+    var s = d3.scaleLinear()
+    	.range([5, 50]);
+    
+    var color = d3.scaleLinear()
+      .interpolate(d3.interpolateHcl)
+      .range([d3.rgb("#007AFF"), d3.rgb('#FEB24C')]);
+    
+    d3.csv("data/through-volume.csv")
+    
+    .then(function(data){
+        var data = data.map(d => {
+        return {
+          gdp: +d.gdp_per_capita_cppp,
+          geo:  d.name,
+          year: +d.time
+        };
+      });
+        // debugger;
+        draw(data);
+    });
+
+    function draw(data){
+        const extent = d3.extent(data, function(d) { return d.gdp; });
+      
+        s.domain(extent)
+        color.domain(extent);
+        
+        var simulation = d3.forceSimulation(data)
+            .force('charge', d3.forceManyBody().strength(-2))
+            .force('center', d3.forceCenter(width / 2, height / 2))
+            .force('collision', d3.forceCollide().radius(function(d) {
+            return s(d.gdp);
+            }))
+            .on('tick', ticked);
+        
+        function ticked() {
+            var u = d3.select('svg')
+            .selectAll('circle')
+            .data(data, function(d) {
+                return d.geo;
+            });
+
+            u.enter()
+            .append('circle')
+            .attr('r', function(d) {
+                return s(d.gdp);
+            })
+            .merge(u)
+            .attr('cx', function(d) {
+                return d.x;
+            })
+            .attr('cy', function(d) {
+                return d.y;
+            })
+                .attr('fill', function(d) {
+                return color(d.gdp);
+            })
+                .attr('stroke', function(d) {
+                return d.geo[0] === 'United States' ? '#000' : '#fff';
+                })
+                .attr('stroke-width', 2)
+            .on("mouseover", function(d){
+                    tooltip.html(d.geo +"<br>"+ "年吞吐量：" + d.gdp.toLocaleString());
+                return tooltip.style("visibility", "visible");
+            })
+                    .on("mousemove", function(){
+            return tooltip.style("top", (d3.event.pageY - 10)+"px").style("left",(d3.event.pageX+10)+"px");
+            })
+                    .on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+            u.exit().remove()
+        }
+        
+        var tooltip = d3.select('body')
+        .append("div")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("color", "white")
+        .style("padding", "8px")
+        .style("background-color", "#626D71")
+        .style("border-radius", "6px")
+        .style("text-align", "center")
+        .style("font-family", "monospace")
+        .text("");
+    }  
+
+  </script>
+</body>

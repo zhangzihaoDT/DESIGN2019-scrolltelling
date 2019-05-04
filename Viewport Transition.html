@@ -59,8 +59,8 @@
         new ScatterplotLayer({
           data: CITIES,
           getPosition: d => [d.longitude, d.latitude],
-          getColor: [255, 180, 0],
-          radiusMinPixels: 7
+          getFillColor: [255, 150, 0],
+          radiusMinPixels: 20
         })
       ]
     });
@@ -79,7 +79,7 @@
           viewState: {
             longitude: d.longitude,
             latitude: d.latitude,
-            zoom: 7,
+            zoom: 10,
             transitionInterpolator: new FlyToInterpolator(),
             transitionDuration: 3000
           }

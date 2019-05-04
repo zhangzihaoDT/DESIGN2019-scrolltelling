@@ -4,11 +4,11 @@
 
 <style>
   .upperLine {
-    stroke: #1daeeb;
+    stroke: #d0373a;
     stroke-width: 2;
   }
   .lowerLine{
-    stroke: #f14e58;
+    stroke: #483d8b;
     stroke-width: 2;
   }
   #small-multiples > div {
@@ -25,6 +25,9 @@
   }
   .x-axis {
     height: 1.5em !important;
+  }
+  .x-axis-label{
+    margin-top: 1em;
   }
   .gridline-x {
     stroke: #ccc;
@@ -55,10 +58,10 @@
 <div id='small-multiples'></div>
 
 <script>
-d3.csv('data/askmefi_category_year.csv',(r) => ({
-    category: r.category,
-    n: Number(r.n),
-    n2: Number(r.n2),
+d3.csv('data/international_flights_top30.csv',(r) => ({
+    category: r.airport_name,
+    n: Number(r.international),
+    n2: Number(r.domestic),
     year: Number(r.year),
     rank: Number(r.rank)
   }))
@@ -165,14 +168,7 @@ d3.csv('data/askmefi_category_year.csv',(r) => ({
     	.xTickFormat(d3.format('0'))
       .yOrient('left')
     	.plotArea(multi);
-  
-    // render
-    // d3.select('#small-multiples')
-    //   .selectAll('div')
-    //   .data(nested)
-    //   .enter()
-    //   .append('div')
-    //   .call(chart);
+      
     function render() {
       // render
     	var container = d3.select('#small-multiples')
@@ -197,7 +193,8 @@ d3.csv('data/askmefi_category_year.csv',(r) => ({
               var value = group.values.find(function(v) { return v.year === year; });
               group.trackball = [{
                 year: year,
-                value: value.n2
+                value: value.n2,
+                value2: value.n
               }];
             })
           } else {
