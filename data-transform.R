@@ -19,11 +19,18 @@ shuju<-my_data %>% mutate(source=sprintf("[%s,%s]",departure_lng,departure_lat),
          target=sprintf("[%s,%s]",arrival_lng,arrival_lat))
 summary(shuju)
 
+PEK_TSN_flights <- read.csv("PEK_TSN_flights.csv",encoding ="UTF-8",stringsAsFactors = FALSE,header = T)
+PEK_TSN_flights[, c(6:9)] <- sapply(PEK_TSN_flights[, c(6:9)], as.numeric)
+summary(PEK_TSN_flights)
+#去除NA
+PEK_TSN_flights[PEK_TSN_flights == "NA"]  <- NA
+PEK_TSN_flights <- na.omit(PEK_TSN_flights)
+summary(PEK_TSN_flights)
 #CSV转JSON
 install.packages('jsonlite')
 library(jsonlite)
-json_data <- toJSON(shuju, pretty = TRUE,force=TRUE)
-writeLines(json_data, "my_data.json")
+json_data <- toJSON(PEK_TSN_flights, pretty = TRUE,force=TRUE)
+writeLines(json_data, "PEK_TSN_flights.json")
 
 head(my_data)
 #计算机场的航线数量
@@ -69,4 +76,20 @@ library(jsonlite)
 json_data <- toJSON(throughput, pretty = TRUE,force=TRUE)
 writeLines(json_data, "throughput.json")
 
+#获得机场的坐标数据和2018年的中心度
+Airports <- read.csv("2018_centrality.csv",encoding ="UTF-8",stringsAsFactors = FALSE,header = T)
+summary(Airports)
+#坐标系变数组
+library(readr)
+library(dplyr)
+Airports <- Airports %>% mutate(position=sprintf("[%s,%s]",airport_lng,airport_lat))
+summary(Airports)
+library(jsonlite)
+json_data <- toJSON(Airports, pretty = TRUE,force=TRUE)
+writeLines(json_data, "Airports-2018nodes.json")
+#改字段名
+colnames(Airports)[colnames(Airports)=="airport_lat"] <- "latitude"
+colnames(Airports)[colnames(Airports)=="airport_lng"] <- "longitude"
+# Write CSV in R
+write.csv(Airports, file = "Airports.csv")
 

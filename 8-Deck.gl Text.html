@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <title>deck.gl + Mapbox Integration</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://cdn.jsdelivr.net/npm/deck.gl@7.0.0-rc.1/dist.min.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css">
+    <script src="https://cdn.jsdelivr.net/npm/d3@5.9.2/dist/d3.min.js"></script>
+  </head>
+  <body>
+    <div id="map" style="width: 100vw; height: 100vh"></div>
+  </body>
+  <script type="text/javascript">
+    const {MapboxLayer, ArcLayer, ScatterplotLayer,IconLayer} = deck;
+
+    // Get a mapbox API access token
+    mapboxgl.accessToken = 'pk.eyJ1Ijoiemhhbmd6aWhhbyIsImEiOiJjamN6dDF1bzMwenphMzNuMjlqaG1vOTJlIn0.VdSfOPUC85YcWqs3LZeXmA';
+    // const DATA = d3.json('https://gist.githubusercontent.com/yarynam/a1a75a1400ca891db4adaaf54ea7022b/raw/f36b4bce4e163c725c8ce1bf675fd95105d2523e/trips.json');
+    const DATA = d3.json('data/PEK_TSN_flights.json');
+    const DATA_AIR = d3.json('data/Airports-2018nodes.json').then(
+        function(data){
+            data.forEach(function(d) {
+                d.position = eval(d.position)
+            });
+            return data;
+        }
+    );
+    console.log(DATA_AIR);
+    const colorScale = d3.scaleOrdinal()
+      .domain(['PEK', 'TSN'])
+      .range([[72,61,139,180], [208,55,58,180]]);
+
+    const WIDTH_SCALE = d3.scaleLinear().domain([0,15000]).range([1, 10]);
+    const CENTER_SCALE = d3.scaleLinear().domain([0,1]).range([20, 50000]);
+
+    // Initialize mapbox map
+    const map = new mapboxgl.Map({
+      container: 'map',
+      center: [108,39.915085],
+      zoom: 3.2,
+      pitch: 30,
+      bearing: 0,
+      renderWorldCopies: 1,
+      style: "mapbox://styles/zhangzihao/cjv8y65cb1rhs1fqj2hgwdbyx",
+      scrollZoom: true
+    });
+
+    // Create a mapbox-compatible deck.gl layer
+
+    // const iconsLayer = new MapboxLayer({
+    //     type: IconLayer,
+    //     id: 'icon-layer',
+    //     data: DATA_AIR,
+    //     opacity: 1,
+    //     iconAtlas: 'images/icon-atlas.png',
+    //     iconMapping: ICON_MAPPING,
+    //     getIcon: d => 'marker',
+    //     sizeScale: 15,
+    //     getPosition: d => d.position,
+    //     getSize: d => 5,
+    //     getColor: d => [Math.sqrt(d.node_dc), 140, 0],
+    // });
+
+    const airportsLayer = new MapboxLayer({
+        id: 'deckgl-circle',
+        type: ScatterplotLayer,
+        data: DATA_AIR,
+        getPosition: d => d.position,
+        getColor: [0, 0, 0],
+        getRadius: d => CENTER_SCALE(d.node_dc),
+        opacity: 0.3
+    });
+
+    // Insert the layer before mapbox labels
+
+
+    map.on('load', () => {
+    //   map.addLayer(iconsLayer);// add dots layer
+      map.addLayer(airportsLayer);// add dots layer
+      map.style.stylesheet.layers.forEach(function(layer) {    //remove labels
+        if (layer.type === 'symbol') {
+            map.removeLayer(layer.id);
+        }
+     });
+    });
+
+
+    
+  </script>
+</html>

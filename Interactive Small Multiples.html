@@ -4,11 +4,11 @@
 
 <style>
   .upperLine {
-    stroke: #d0373a;
+    stroke: #103C9A;
     stroke-width: 2;
   }
   .lowerLine{
-    stroke: #483d8b;
+    stroke: #50A4E1;
     stroke-width: 2;
   }
   #small-multiples > div {
@@ -163,7 +163,7 @@ d3.csv('data/international_flights_top30.csv',(r) => ({
       .yDomain(yExtent(data))
     	.xDomain(xExtent(data))
     	.xLabel(function(d) { return d.key; })
-    	.yTicks(3)
+    	.yTicks(0)
     	.xTicks(4)
     	.xTickFormat(d3.format('0'))
       .yOrient('left')

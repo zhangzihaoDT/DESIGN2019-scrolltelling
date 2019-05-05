@@ -52,11 +52,11 @@
     const colorScale = d3.scaleLinear()
                           .domain([456,208034,612572,2263015,100983290])
                           .range([
-                                  [214, 235,251,150],
-                                  [180, 220,247,170],
-                                  [144, 204,243,190],
-                                  [101, 189,239,210],
-                                  [29, 174, 235,230]
+                                  [206, 54,70,230],
+                                  [194, 54,118,230],
+                                  [179, 57,156,230],
+                                  [126, 59,159,230],
+                                  [87, 61,145,230]
                                 ]);
     const radiusScale = d3.scaleLinear()
                           .domain([456,100983290]).range([20000,200000]);
@@ -64,11 +64,11 @@
     const map = new mapboxgl.Map({
       container: 'map',
       center: [108,37],
-      zoom: 3.72,
-      pitch: 0,
+      zoom: 3.5,
+      pitch: 30,
       bearing: 0,
       renderWorldCopies: 1,
-      style: "mapbox://styles/zhangzihao/cjn09g7yq52jp2ro8ri6tjun6",
+      style: "mapbox://styles/zhangzihao/cjv8y65cb1rhs1fqj2hgwdbyx",
       scrollZoom: false
     });
     function renderDataByYear(year){
