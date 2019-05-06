@@ -11,12 +11,12 @@
     <div id="map" style="width: 100vw; height: 100vh"></div>
   </body>
   <script type="text/javascript">
-    const {MapboxLayer, ArcLayer, ScatterplotLayer,IconLayer} = deck;
+    const {MapboxLayer, ArcLayer, ScatterplotLayer,GeoJsonLayer} = deck;
 
     // Get a mapbox API access token
     mapboxgl.accessToken = 'pk.eyJ1Ijoiemhhbmd6aWhhbyIsImEiOiJjamN6dDF1bzMwenphMzNuMjlqaG1vOTJlIn0.VdSfOPUC85YcWqs3LZeXmA';
     // const DATA = d3.json('https://gist.githubusercontent.com/yarynam/a1a75a1400ca891db4adaaf54ea7022b/raw/f36b4bce4e163c725c8ce1bf675fd95105d2523e/trips.json');
-    const DATA = d3.json('data/PEK_TSN_flights.json');
+    const DATA = d3.json('data/sh_json.json');
     const DATA_AIR = d3.json('data/Airports-2018nodes.json').then(
         function(data){
             data.forEach(function(d) {
@@ -47,19 +47,21 @@
 
     // Create a mapbox-compatible deck.gl layer
 
-    // const iconsLayer = new MapboxLayer({
-    //     type: IconLayer,
-    //     id: 'icon-layer',
-    //     data: DATA_AIR,
-    //     opacity: 1,
-    //     iconAtlas: 'images/icon-atlas.png',
-    //     iconMapping: ICON_MAPPING,
-    //     getIcon: d => 'marker',
-    //     sizeScale: 15,
-    //     getPosition: d => d.position,
-    //     getSize: d => 5,
-    //     getColor: d => [Math.sqrt(d.node_dc), 140, 0],
-    // });
+    const geoLayer = new MapboxLayer({
+      type: GeoJsonLayer,
+      id: 'geojson-layer',
+      data:DATA,
+      stroked: true,
+      // filled: true,
+      // extruded: true,
+      lineWidthScale: 20,
+      lineWidthMinPixels: 2,
+      getFillColor: [255, 160, 180, 200],
+      getLineColor: [0, 0, 0, 200],
+      getRadius: 100,
+      getLineWidth: 1,
+      getElevation: 30,
+    });
 
     const airportsLayer = new MapboxLayer({
         id: 'deckgl-circle',
@@ -75,8 +77,8 @@
 
 
     map.on('load', () => {
-    //   map.addLayer(iconsLayer);// add dots layer
       map.addLayer(airportsLayer);// add dots layer
+      map.addLayer(geoLayer);// add dots layer
       map.style.stylesheet.layers.forEach(function(layer) {    //remove labels
         if (layer.type === 'symbol') {
             map.removeLayer(layer.id);

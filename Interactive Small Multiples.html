@@ -159,7 +159,7 @@ d3.csv('data/international_flights_top30.csv',(r) => ({
     // create a chart
     var chart = fc.chartSvgCartesian(
         xScale,
-        d3.scaleLinear())
+    d3.scaleLinear())
       .yDomain(yExtent(data))
     	.xDomain(xExtent(data))
     	.xLabel(function(d) { return d.key; })

@@ -106,7 +106,7 @@
           </div>
         </div>
         <div class="artitle">
-            <h1 class="title">标题</h1>
+            <h1 class="title">Part1.开头文字进入正文，提到吞吐量</h1>
             <h2 class="author"></h2>
             <div></div>
             <div class="group">
@@ -114,23 +114,22 @@
                 <div class="wrap" id="mapbox-wrapper">
                     <div id="map"></div>
                 </div>
-                <p>scene01</p>
+                <p class="opening">scene01</p>
                 <div class="subgroup" id = 'mapbox-sub'>
                   <div id="act-zero">
                       <p>10年吞吐量</p>
                   </div>
                   <div id="act-one">
                     <p>Part2.文字引入航线和中心度<br>全国机场中心度展现在地图上（颜色深浅区分）</p>
-                    <p>TOP30中心度机场的区域分布<br>
-                        鼠标滚动在地图上筛选出中心度top30的机场，出现区域边界，标注城市名。<br>
-                        滚动出现城市排名的表格
-                        </p>
                   </div>  
                   <div id="act-two">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, voluptates veniam consequuntur fugiat pariatur asperiores odit magnam commodi suscipit consequatur temporibus maiores vitae quos assumenda voluptatem mollitia voluptatum voluptate! Vel.</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque sequi reiciendis, accusamus veniam magnam officiis, animi harum accusantium quos eligendi doloribus quas voluptas tempore fugiat maxime velit veritatis quisquam error.</p>
+                    <p>TOP30中心度机场的区域分布</p>
                   </div>  
-                   
+                  <div id="act-three">
+                    <p>区域最强机场的辐射范围</p>
+                    <p>华北：地图展现北京首都机场和ta联系最紧密的top10机场航线<br>
+                      华北区域的边界线展现出来，标注城市名；</p>
+                  </div> 
                 </div>
                
                <div class="wrap"></div>
@@ -158,7 +157,7 @@
     window.onload = function() {
         const map = document.querySelector("#map")
         // const groups = document.querySelectorAll(".group")
-        const {MapboxLayer, ArcLayer, ScatterplotLayer} = deck;
+        const {MapboxLayer, ArcLayer, ScatterplotLayer,GeoJsonLayer} = deck;
         class ArcBrushingLayer extends ArcLayer {
         // custom shader with step function to create opacity gradient with colorA and colorB
         // More at https://thebookofshaders.com/05/
@@ -206,13 +205,14 @@
       container: 'map',
       center: [108,37],
       zoom: 3.2,
-      pitch: 10,
+      pitch: 20,
       bearing: 0,
       renderWorldCopies: 1,
       style: "mapbox://styles/zhangzihao/cjvao5sd07yal1fqqcksteurk",
       scrollZoom: false
     });
     const DATA = d3.json("data/throughput.json");
+    const DATA_TOP30 = d3.json('data/sh_json.json');
     const DATA_AIR = d3.json('data/Airports-2018nodes.json').then(
         function(data){
             data.forEach(function(d) {
@@ -224,20 +224,16 @@
     const DATA_PEK = d3.json('data/PEK_TSN_flights.json');
     const colorScale = d3.scaleLinear()
                           .domain([456,208034,612572,2263015,100983290])
-                          .range([
-                                  [130, 190,224,230],
-                                  [57, 150,224,230],
-                                  [12, 122,221,230],
-                                  [7, 91,192,230],
-                                  [16, 60,154,230]
-                                ]);
+                          .range([[130, 190,224,230],[57, 150,224,230],[12, 122,221,230], [7, 91,192,230],[16, 60,154,230]]);
     const radiusScale = d3.scaleLinear()
       .domain([456,100983290]).range([20000,200000]);
     const colorOrdinal = d3.scaleOrdinal()
       .domain(['PEK', 'TSN'])
       .range([[16,60,154,200], [80,164,225,200]]);
     const WIDTH_SCALE = d3.scaleLinear().domain([0,15000]).range([1, 10]);
-    const CENTER_SCALE = d3.scaleLinear().domain([0,1]).range([20, 50000]);
+    const CENTER_SCALE = d3.scaleLinear().domain([0,1]).range([600, 60000]);
+    const COLOR_SCALE = d3.scaleLinear()
+                          .domain([0,0.5,1]).range([[130, 190,224],[12, 122,221],[16, 60,154]]);;
     const layers = {
             "zero": [new MapboxLayer({
                 id: "2015",
@@ -351,9 +347,11 @@
         type: ScatterplotLayer,
         data: DATA_AIR,
         getPosition: d => d.position,
-        getFillColor: [0, 0, 0],
+        getFillColor: d => COLOR_SCALE(d.node_dc),
         getRadius: d => CENTER_SCALE(d.node_dc),
-        opacity: 0.3
+        opacity: 0.3,
+        lineWidthMinPixels: 2,
+        getLineColor: [0, 0, 0,100]
     });
 
     const scene_act_one = new ScrollMagic.Scene({
@@ -370,6 +368,36 @@
             mapbox.removeLayer(airportsLayer.id)
         })
     
+    const top30Layer = new MapboxLayer({
+      type: GeoJsonLayer,
+      id: 'geojson-layer',
+      data:DATA_TOP30,
+      stroked: true,
+      // filled: true,
+      // extruded: true,
+      lineWidthScale: 20,
+      lineWidthMinPixels: 2,
+      getFillColor: [255, 160, 180, 200],
+      getLineColor: [0, 0, 0, 200],
+      getRadius: 100,
+      getLineWidth: 1,
+      getElevation: 30,
+    })
+    
+    const scene_act_two = new ScrollMagic.Scene({
+            triggerElement: document.querySelector('#act-two'),
+            duration: document.querySelector('#act-two').scrollHeight,
+            triggerHook: 0.25
+        })
+        .addTo(controller)
+        .addIndicators()
+        .on("enter", function (event) {
+            mapbox.addLayer(top30Layer)
+        })
+        .on("leave", function (event) {
+            mapbox.removeLayer(top30Layer.id)
+        })
+
     const arcsLayer = new MapboxLayer({
        type: ArcBrushingLayer,
        id: `arcs`,
@@ -385,9 +413,9 @@
        getTilt:5
     });
 
-    const scene_act_two = new ScrollMagic.Scene({
-            triggerElement: document.querySelector('#act-two'),
-            duration: document.querySelector('#act-two').scrollHeight,
+    const scene_act_three = new ScrollMagic.Scene({
+            triggerElement: document.querySelector('#act-three'),
+            duration: document.querySelector('#act-three').scrollHeight,
             triggerHook: 0.25
         })
         .addTo(controller)
