@@ -19,18 +19,18 @@ shuju<-my_data %>% mutate(source=sprintf("[%s,%s]",departure_lng,departure_lat),
          target=sprintf("[%s,%s]",arrival_lng,arrival_lat))
 summary(shuju)
 
-PEK_TSN_flights <- read.csv("PEK_TSN_flights.csv",encoding ="UTF-8",stringsAsFactors = FALSE,header = T)
+regional_airport_top10 <- read.csv("part2-区域机场top10航线.csv",encoding ="UTF-8",stringsAsFactors = FALSE,header = T)
 PEK_TSN_flights[, c(6:9)] <- sapply(PEK_TSN_flights[, c(6:9)], as.numeric)
-summary(PEK_TSN_flights)
+summary(regional_airport_top10)
 #去除NA
 PEK_TSN_flights[PEK_TSN_flights == "NA"]  <- NA
-PEK_TSN_flights <- na.omit(PEK_TSN_flights)
-summary(PEK_TSN_flights)
+regional_airport_top10 <- na.omit(regional_airport_top10)
+summary(regional_airport_top10)
 #CSV转JSON
 install.packages('jsonlite')
 library(jsonlite)
-json_data <- toJSON(PEK_TSN_flights, pretty = TRUE,force=TRUE)
-writeLines(json_data, "PEK_TSN_flights.json")
+json_data <- toJSON(regional_airport_top10, pretty = TRUE,force=TRUE)
+writeLines(json_data, "regional_airport_top10.json")
 
 head(my_data)
 #计算机场的航线数量

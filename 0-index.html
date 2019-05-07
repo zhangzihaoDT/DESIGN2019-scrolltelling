@@ -58,6 +58,22 @@
           display: none;
         }
   /*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
+  #chart {
+    width: 100%;
+    height: 300px;
+  }
+  .open path {
+    fill: lightblue;
+    stroke: none;
+  }
+  .bar path {
+    fill: #0173DC;
+  }
+  text.bar-label{
+      font-size: 12px;
+      fill: black;
+  }
+   /*↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑ */
       .warp,#map{
         height: 50vh;
       }
@@ -70,15 +86,15 @@
         padding: 0 20vw;
       }
       p{
-        margin: 36px 0;
+        margin: 0px 0;
         border: 1px solid black;
-        height: 30vh;
+        height: 50vh;
       }
       img{
         width: 100%;
       }
       .wrap{
-        border: 1px solid black;
+        border: 1px solid red;
         height: 50vh;
       }
       #map.pin{
@@ -136,7 +152,19 @@
 
             </div>
             <div class="group">
-                
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae aspernatur, dolore molestias iusto cupiditate aliquid fugiat atque? Nisi sequi incidunt reiciendis consequuntur explicabo! Minima aperiam placeat sequi maiores, dolore ipsum.</p>
+              <div id='chart'>
+                <d3fc-group id='group' style='display: flex; height: 100%; width: 100%; flex-direction: column' auto-resize>
+                  <div style='flex: 1; display: flex; flex-direction: column'>
+                      <div style='flex: 1; display: flex; flex-direction: row'>
+                          <d3fc-svg class='close-axis' style='width: 3em'></d3fc-svg>
+                          <d3fc-svg class='plot-area' style='flex: 1; overflow: hidden'></d3fc-svg>
+                          <d3fc-svg class='open-axis' style='width: 3em'></d3fc-svg>
+                      </div>
+                      <d3fc-svg class='x-axis' style='height: 2em; margin-left: 3em; margin-right: 3em'></d3fc-svg>
+                  </div>
+                </d3fc-group>
+              </div>
             </div>
             <div class="group">
                 <div class="content">
@@ -212,7 +240,7 @@
       scrollZoom: false
     });
     const DATA = d3.json("data/throughput.json");
-    const DATA_TOP30 = d3.json('data/sh_json.json');
+    const DATA_AREA = d3.json('data/china.json');
     const DATA_AIR = d3.json('data/Airports-2018nodes.json').then(
         function(data){
             data.forEach(function(d) {
@@ -221,7 +249,8 @@
             return data;
         }
     );
-    const DATA_PEK = d3.json('data/PEK_TSN_flights.json');
+    const DATA_FLY = d3.json('data/regional_airport_top10.json');
+    console.log(DATA_AREA);
     const colorScale = d3.scaleLinear()
                           .domain([456,208034,612572,2263015,100983290])
                           .range([[130, 190,224,230],[57, 150,224,230],[12, 122,221,230], [7, 91,192,230],[16, 60,154,230]]);
@@ -230,7 +259,7 @@
     const colorOrdinal = d3.scaleOrdinal()
       .domain(['PEK', 'TSN'])
       .range([[16,60,154,200], [80,164,225,200]]);
-    const WIDTH_SCALE = d3.scaleLinear().domain([0,15000]).range([1, 10]);
+    const WIDTH_SCALE = d3.scaleLinear().domain([4000,30000]).range([1, 10]);
     const CENTER_SCALE = d3.scaleLinear().domain([0,1]).range([600, 60000]);
     const COLOR_SCALE = d3.scaleLinear()
                           .domain([0,0.5,1]).range([[130, 190,224],[12, 122,221],[16, 60,154]]);;
@@ -343,7 +372,7 @@
     })
 
     const airportsLayer = new MapboxLayer({
-        id: 'deckgl-circle',
+        id: 'all-airports',
         type: ScatterplotLayer,
         data: DATA_AIR,
         getPosition: d => d.position,
@@ -371,14 +400,14 @@
     const top30Layer = new MapboxLayer({
       type: GeoJsonLayer,
       id: 'geojson-layer',
-      data:DATA_TOP30,
+      data:DATA_AREA,
       stroked: true,
       // filled: true,
       // extruded: true,
       lineWidthScale: 20,
       lineWidthMinPixels: 2,
-      getFillColor: [255, 160, 180, 200],
-      getLineColor: [0, 0, 0, 200],
+      getFillColor: [0, 0, 0, 20],
+      getLineColor: [0, 0, 0, 20],
       getRadius: 100,
       getLineWidth: 1,
       getElevation: 30,
@@ -393,25 +422,54 @@
         .addIndicators()
         .on("enter", function (event) {
             mapbox.addLayer(top30Layer)
+            mapbox.addLayer(airportsLayer)
         })
         .on("leave", function (event) {
+            mapbox.removeLayer(airportsLayer.id)
             mapbox.removeLayer(top30Layer.id)
         })
 
-    const arcsLayer = new MapboxLayer({
+    const arcsLayer_PEK = new MapboxLayer({
        type: ArcBrushingLayer,
-       id: `arcs`,
-       data: DATA_PEK,
+       id: `arcs_PEK`,
+       data: DATA_FLY.then(function(data){
+        return data.filter(function(d){
+          return d.code_1 === 'PEK'
+        })
+       }),
        opacity: 1,
        coef: 0.001,
-       getSourcePosition: d => [d.departure_lng, d.departure_lat],
-       getTargetPosition: d => [d.destination_lng, d.destination_lat],
-       getSourceColor: d => colorOrdinal(d.departure),
-       getTargetColor: d => colorOrdinal(d.departure),
-       getWidth: d => WIDTH_SCALE(d.flights),
-       getHeight:0.6,
-       getTilt:5
+       getSourcePosition: d => [d.lng_1, d.lat_1],
+       getTargetPosition: d => [d.lng_2, d.lat_2],
+       getSourceColor: d => [16,60,154,200],
+       getTargetColor: d => [16,60,154,200],
+       getWidth: d => WIDTH_SCALE(d.total_flights),
+       getHeight:0.8,
+       getTilt:0
     });
+
+    const huabeiLayer = new MapboxLayer({
+      type: GeoJsonLayer,
+      id: 'geojson-layer-huabei',
+      data:DATA_AREA.then(function(data){
+        console.log('data --', data)
+        console.log('type data.features. ', typeof data.features)
+        return data.features.filter(function(d){
+          console.log('d ', d)
+          return d.id === 0
+        })
+      }),
+      stroked: true,
+      // filled: true,
+      // extruded: true,
+      lineWidthScale: 20,
+      lineWidthMinPixels: 2,
+      getFillColor: [0, 0, 0, 20],
+      getLineColor: [0, 0, 0, 20],
+      getRadius: 100,
+      getLineWidth: 1,
+      getElevation: 30,
+    })
 
     const scene_act_three = new ScrollMagic.Scene({
             triggerElement: document.querySelector('#act-three'),
@@ -421,21 +479,20 @@
         .addTo(controller)
         .addIndicators()
         .on("enter", function (event) {
-            mapbox.addLayer(arcsLayer)
-            mapbox.addLayer(airportsLayer)
-
+            mapbox.addLayer(arcsLayer_PEK)
+            mapbox.addLayer(huabeiLayer)
             var coef = 0.001
             const animationInterval = setInterval(function () {
                 coef += 0.005
                 if (coef >= 1) {
                     clearInterval(animationInterval)
                 }
-                arcsLayer.setProps({coef})
+                arcsLayer_PEK.setProps({coef})
             }, 10)
         })
         .on("leave", function (event) {
-            mapbox.removeLayer(airportsLayer.id)
-            mapbox.removeLayer(arcsLayer.id)
+            mapbox.removeLayer(arcsLayer_PEK.id)
+            mapbox.addLayer(huabeiLayer.id)
         })
     
 
@@ -600,6 +657,123 @@
 	});
 
   }
+
+  d3.csv('data/prices.csv').then(
+          function(data){
+              data.forEach(function(d) {
+                  d.date = d.date;
+                  d.close = +d.close;
+                  d.open = +d.open;
+              });
+              return data;
+          }
+  ).then(function(data){
+    // components for computing the data extent
+    var closeExtent = fc.extentLinear().include([0])
+    .pad([0, 0.4])
+    .accessors([
+        function(d) { return d.close; }
+    ]);
+    var openExtent = fc.extentLinear().include([0])
+    .pad([0, 0.2])
+    .accessors([
+        function(d) { return d.open; }
+    ]);
+
+    // scales
+    var openScale = d3.scaleLinear();
+    var closeScale = d3.scaleLinear();
+    var xScale = d3.scaleBand()
+		.padding(0.5)
+		.align(0.5);
+
+    // axes
+    var xAxis = fc.axisBottom()
+    .scale(xScale).tickPadding(5);
+    var openAxis = fc.axisRight()
+    .scale(openScale);
+    var closeAxis = fc.axisLeft()
+    .scale(closeScale);
+
+    // series
+    var closeSeries = fc.seriesSvgPoint()
+    .size(30)
+    .crossValue(function(d) { return d.date; })
+    .mainValue(function(d) { return d.close; })
+    .xScale(xScale)
+    .yScale(closeScale);
+
+    var openSeries = fc.autoBandwidth(fc.seriesSvgBar())
+    .crossValue(function(d) { return d.date; })
+    // .align('left')
+    .mainValue(function(d) { return d.open; })
+    .xScale(xScale)
+    .yScale(openScale)
+    .decorate(function(selection) {
+        // add labels
+        selection.enter()
+            .append('text')
+            .attr('class', 'bar-label')
+            .attr('transform', 'translate(-10, -15)')
+            .text(d => d3.format('.0%')(d.open));
+    });
+
+    // handle the 'draw' event from the d3fc-svg and d3fc-group elements
+    d3.select('.close-axis')
+    .on('draw', function(d, i, nodes) {
+        d3.select(nodes[i])
+        .select('svg')
+        .attr('viewBox', `${-event.detail.width} 0 ${event.detail.width} ${event.detail.height}`)
+        .call(closeAxis);
+    });
+
+    d3.select('.open-axis')
+    .on('draw', function(d, i, nodes) {
+        d3.select(nodes[i])
+        .select('svg')
+        .call(openAxis);
+    });
+
+    d3.select('.x-axis')
+    .on('draw', function(d, i, nodes) {
+        d3.select(nodes[i])
+        .select('svg')
+        .attr("transform", "translate(-5,0)")
+        .call(xAxis);
+    });
+
+    // handle the plot area measure event in order to compute the scale ranges
+    d3.select('.plot-area')
+    .on('measure', function() {
+        xScale.range([0, event.detail.width]);
+        openScale.range([event.detail.height, 0]);
+        closeScale.range([event.detail.height, 0]);
+    })
+
+    // use the data-join component in order to create the inner 'g' elements. This ensures
+    // that the elements are only created once.
+    var closeJoin = fc.dataJoin('g', 'close');
+    var openJoin = fc.dataJoin('g', 'open');
+  // set the domain
+  openScale.domain(openExtent(data));
+  closeScale.domain(closeExtent(data));
+  xScale.domain(data.map(d => d.date));
+
+  // render the chart
+  d3.select('.plot-area')
+    .on('draw', function(d, i, nodes) {
+      var svg = d3.select(nodes[i])
+        .select('svg');
+      closeJoin(svg, [data])
+        .call(openSeries);
+      openJoin(svg, [data])
+        .call(closeSeries);
+    });
+
+  d3.select('#group')
+      .node()
+      .requestRedraw();       
+});
   </script>
 </body>
 </html>

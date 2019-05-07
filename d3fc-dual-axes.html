@@ -50,13 +50,9 @@ d3.csv('data/prices.csv').then(
             });
             return data;
         }
-    ).then(function(data){
-        draw(data)
-    });
-
-function draw(data){
-     // components for computing the data extent
-     var closeExtent = fc.extentLinear().include([0])
+).then(function(data){
+    // components for computing the data extent
+    var closeExtent = fc.extentLinear().include([0])
     .pad([0, 0.4])
     .accessors([
         function(d) { return d.close; }
@@ -159,7 +155,8 @@ function draw(data){
 
   d3.select('#group')
       .node()
-      .requestRedraw();
-}
+      .requestRedraw();       
+});
+
 
 </script>
