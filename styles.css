@@ -17,11 +17,12 @@ a.step-link {
   text-decoration: none;
 }
 
-a.step-link:hover, a.active {
+a.step-link:hover,
+a.active {
   color: #ddd;
 }
 
-#container{
+#container {
   margin: auto;
   padding-top: 20px;
   width: 980px;
@@ -77,7 +78,7 @@ a.step-link:hover, a.active {
   top: 120px;
   width: 200px;
 }
- 
+
 #step1-right-annotation {
   left: 770px;
   top: 120px;
@@ -102,5 +103,41 @@ a.step-link:hover, a.active {
   top: 550px;
   width: 200px;
 }
+/*数据图表的定义*/
+.axis path,
+.axis line {
+  fill: none;
+  stroke: rgb(197, 197, 197);
+  shape-rendering: crispEdges;
+}
 
+.axis text {
+  fill: rgb(128, 128, 128);
+}
 
+.axis text {
+  font-size: 12px;
+}
+
+.highlight {
+  fill: rgb(55, 169, 64);
+}
+
+.normal {
+  fill: rgb(168, 215, 163);
+}
+
+/*Defining chart stylings*/
+
+.circle {
+  fill-opacity: 0.3;
+  stroke-width: 0.1;
+}
+
+circle:hover {
+  opacity: 0.7;
+}
+
+circle {
+  mix-blend-mode: multiply;
+}
