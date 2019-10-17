@@ -99,6 +99,7 @@ var nestData;
 function renderScatter(index) {
   d3.csv(url).then(function(data) {
     // data proccessing
+
     var valExtent = [];
     data.forEach(function(d) {
       d.sepalWidth = +d.level;
