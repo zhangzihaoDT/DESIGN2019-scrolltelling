@@ -58,7 +58,15 @@ var svg = figure
     .attr("height", height + margin.top + margin.bottom),
   g = svg
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
+  gX = svg
+    .append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")"),
+  gY = svg
+    .append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + margin.left * 3 + ",0)");
 
 function switchStep(stepNo) {
   d3.selectAll(".step-link").classed("active", false);
@@ -115,30 +123,7 @@ function renderScatter(index) {
       })
       .entries(data);
     console.log(nestData);
-    var trans = 15; //Y轴偏移量
-    //create axis
-    svg
-      .append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis)
-      .append("text")
-      .attr("y", 35)
-      .attr("x", width / 2 - margin.left)
-      .attr("dy", ".5em")
-      .text("Sepal Width");
 
-    svg
-      .append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + (margin.bottom - trans) + ",0)")
-      .call(yAxis)
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", -55)
-      .attr("x", -(height / 2) - margin.top)
-      .attr("dx", "1em")
-      .text("Sepal Length");
     updata(index);
   });
 }
@@ -159,6 +144,30 @@ function updata(index) {
       return d.sepalLength;
     })
   );
+
+  // DATA JOIN
+  var axisX = svg.select(".x.axis");
+  var axisY = svg.select(".y.axis");
+
+  //create axis
+  axisX
+    .append("g")
+    .call(xAxis)
+    .append("text")
+    .attr("y", 35)
+    .attr("x", width / 2 - margin.left)
+    .attr("dy", ".5em")
+    .text("Sepal Width");
+
+  axisY
+    .append("g")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -55)
+    .attr("x", -(height / 2) - margin.top)
+    .attr("dx", "1em")
+    .text("Sepal Length");
 
   // DATA JOIN
   var circles = g.selectAll("circle").data(data);
@@ -217,15 +226,13 @@ function updata(index) {
   circles.exit().remove();
 
   /// Update X Axis
-  svg
-    .select(".x.axis")
+  axisX
     .transition()
     .duration(1000)
     .call(xAxis);
 
   // Update Y Axis
-  svg
-    .select(".y.axis")
+  axisY
     .transition()
     .duration(1000)
     .call(yAxis);
