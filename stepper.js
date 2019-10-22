@@ -101,12 +101,12 @@ function switchAnnotation(stepNo) {
 function vis(stepNo) {
   figure.select("p").text(stepNo);
   if (stepNo > 1) {
-    initAxis();
-    renderScatter(stepNo - 2);
+    initAxis(); //先初始化轴
+    renderScatter(stepNo - 2); //更新图表
   } else if ((stepNo = 1)) {
-    g.selectAll("circle").remove();
-    svg.selectAll("g.x.axis").remove();
-    svg.selectAll("g.y.axis").remove();
+    g.selectAll("circle").remove(); //删除图表（保留svg）
+    svg.selectAll("g.x.axis").remove(); //删除x轴
+    svg.selectAll("g.y.axis").remove(); //删除y轴
   }
 }
 
