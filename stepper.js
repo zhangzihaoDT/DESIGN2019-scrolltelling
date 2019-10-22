@@ -20,12 +20,6 @@ var timeScale = d3
   .range([margin.bottom, width - margin.top - margin.bottom]);
 
 var yScale = d3.scaleLinear().range([height - margin.right, margin.top]);
-
-//d3 functions to format numbers https://github.com/mbostock/d3/wiki/Formatting
-var format = d3.format(" ");
-var formatComma = d3.format(",");
-var parseDate = d3.timeFormat("%I:%M");
-
 //create x axis
 var xAxis = d3
   .axisBottom()
@@ -50,6 +44,10 @@ var yAxis = d3
   .tickFormat(function(d) {
     return format(d);
   });
+//d3 functions to format numbers https://github.com/mbostock/d3/wiki/Formatting
+var format = d3.format(" ");
+var formatComma = d3.format(",");
+var parseDate = d3.timeFormat("%I:%M");
 
 //create svg container
 var svg = figure
@@ -58,16 +56,31 @@ var svg = figure
     .attr("height", height + margin.top + margin.bottom),
   g = svg
     .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")"),
-  gX = svg
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+function initAxis() {
+  svg
     .append("g")
     .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")"),
-  gY = svg
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+    .append("text")
+    .attr("y", 35)
+    .attr("x", width / 2 - margin.left)
+    .attr("dy", ".5em")
+    .text("Sepal Width");
+  svg
     .append("g")
     .attr("class", "y axis")
-    .attr("transform", "translate(" + margin.left * 3 + ",0)");
-
+    .attr("transform", "translate(" + margin.left * 3 + ",0)")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -55)
+    .attr("x", -(height / 2) - margin.top)
+    .attr("dx", "1em")
+    .text("Sepal Length");
+}
 function switchStep(stepNo) {
   d3.selectAll(".step-link").classed("active", false);
   d3.select("#step" + stepNo).classed("active", true);
@@ -87,7 +100,14 @@ function switchAnnotation(stepNo) {
 }
 function vis(stepNo) {
   figure.select("p").text(stepNo);
-  renderScatter(stepNo - 2);
+  if (stepNo > 1) {
+    initAxis();
+    renderScatter(stepNo - 2);
+  } else if ((stepNo = 1)) {
+    g.selectAll("circle").remove();
+    svg.selectAll("g.x.axis").remove();
+    svg.selectAll("g.y.axis").remove();
+  }
 }
 
 d3.selectAll("a.step-link").on("click", function(d) {
@@ -99,7 +119,6 @@ d3.selectAll("a.step-link").on("click", function(d) {
   switchStep(clickedStepNo);
   switchAnnotation(clickedStepNo);
   vis(clickedStepNo);
-  return false;
 });
 //load data
 var url = "data/bubblesBind.csv";
@@ -131,7 +150,6 @@ function updata(index) {
   // get the data from index parameter
   var data = nestData[index].values;
   console.log(data);
-
   //set scales domain(统一的比例尺)
   xScale.domain(
     d3.extent(data, function(d) {
@@ -144,30 +162,6 @@ function updata(index) {
       return d.sepalLength;
     })
   );
-
-  // DATA JOIN
-  var axisX = svg.select(".x.axis");
-  var axisY = svg.select(".y.axis");
-
-  //create axis
-  axisX
-    .append("g")
-    .call(xAxis)
-    .append("text")
-    .attr("y", 35)
-    .attr("x", width / 2 - margin.left)
-    .attr("dy", ".5em")
-    .text("Sepal Width");
-
-  axisY
-    .append("g")
-    .call(yAxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", -55)
-    .attr("x", -(height / 2) - margin.top)
-    .attr("dx", "1em")
-    .text("Sepal Length");
 
   // DATA JOIN
   var circles = g.selectAll("circle").data(data);
@@ -226,13 +220,15 @@ function updata(index) {
   circles.exit().remove();
 
   /// Update X Axis
-  axisX
+  svg
+    .selectAll("g.x.axis")
     .transition()
     .duration(1000)
     .call(xAxis);
 
   // Update Y Axis
-  axisY
+  svg
+    .selectAll("g.y.axis")
     .transition()
     .duration(1000)
     .call(yAxis);
