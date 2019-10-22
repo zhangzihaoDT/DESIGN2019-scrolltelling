@@ -58,29 +58,6 @@ var svg = figure
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-function initAxis() {
-  svg
-    .append("g")
-    .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
-    .call(xAxis)
-    .append("text")
-    .attr("y", 35)
-    .attr("x", width / 2 - margin.left)
-    .attr("dy", ".5em")
-    .text("Sepal Width");
-  svg
-    .append("g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(" + margin.left * 3 + ",0)")
-    .call(yAxis)
-    .append("text")
-    .attr("transform", "rotate(-90)")
-    .attr("y", -55)
-    .attr("x", -(height / 2) - margin.top)
-    .attr("dx", "1em")
-    .text("Sepal Length");
-}
 function switchStep(stepNo) {
   d3.selectAll(".step-link").classed("active", false);
   d3.select("#step" + stepNo).classed("active", true);
@@ -122,114 +99,136 @@ d3.selectAll("a.step-link").on("click", function(d) {
 });
 //load data
 var url = "data/bubblesBind.csv";
-var nestData;
-function renderScatter(index) {
-  d3.csv(url).then(function(data) {
-    // data proccessing
 
-    var valExtent = [];
-    data.forEach(function(d) {
-      d.sepalWidth = +d.level;
-      d.sepalLength = +d.volume;
-      d.type = +d.rent;
-      d.classify = d.cityClassify;
-      valExtent = d3.extent([valExtent[0], valExtent[1], d.level, d.volume]);
-    });
-    nestData = d3
-      .nest()
-      .key(function(d) {
-        return d.type;
-      })
-      .entries(data);
-    console.log(nestData);
-
-    updata(index);
-  });
+function initAxis() {
+  svg
+    .append("g")
+    .attr("class", "x axis")
+    .attr("transform", "translate(0," + height + ")")
+    .call(xAxis)
+    .append("text")
+    .attr("y", 35)
+    .attr("x", width / 2 - margin.left)
+    .attr("dy", ".5em")
+    .text("Sepal Width");
+  svg
+    .append("g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(" + margin.left * 3 + ",0)")
+    .call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -55)
+    .attr("x", -(height / 2) - margin.top)
+    .attr("dx", "1em")
+    .text("Sepal Length");
 }
-function updata(index) {
-  // get the data from index parameter
-  var data = nestData[index].values;
-  console.log(data);
-  //set scales domain(统一的比例尺)
-  xScale.domain(
-    d3.extent(data, function(d) {
-      return d.sepalWidth;
+function renderScatter(index) {
+  d3.csv(url)
+    .then(function(data) {
+      // data proccessing
+      var valExtent = [];
+      data.forEach(function(d) {
+        d.sepalWidth = +d.level;
+        d.sepalLength = +d.volume;
+        d.type = +d.rent;
+        d.classify = d.cityClassify;
+        valExtent = d3.extent([valExtent[0], valExtent[1], d.level, d.volume]);
+      });
+      var nestData = d3
+        .nest()
+        .key(function(d) {
+          return d.type;
+        })
+        .entries(data);
+      return nestData;
     })
-  );
+    .then(function(nestData) {
+      console.log(nestData);
+      // get the data from index parameter
+      var data = nestData[index].values;
+      console.log(data);
+      //set scales domain(统一的比例尺)
+      xScale.domain(
+        d3.extent(data, function(d) {
+          return d.sepalWidth;
+        })
+      );
 
-  yScale.domain(
-    d3.extent(data, function(d) {
-      return d.sepalLength;
-    })
-  );
+      yScale.domain(
+        d3.extent(data, function(d) {
+          return d.sepalLength;
+        })
+      );
 
-  // DATA JOIN
-  var circles = g.selectAll("circle").data(data);
+      // DATA JOIN
+      var circles = g.selectAll("circle").data(data);
 
-  //ENTER
-  circles
-    .enter()
-    .append("circle")
-    .attr("class", "circle")
-    .attr("cx", function(d) {
-      return xScale(d.sepalWidth);
-    })
-    .attr("cy", height)
-    .attr("r", 4)
-    .attr("fill", "white")
-    .transition()
-    .delay(function(d, i) {
-      return i * 2;
-    })
-    .duration(1000)
-    .attr("cx", function(d) {
-      return xScale(d.sepalWidth);
-    })
-    .attr("cy", function(d) {
-      return yScale(d.sepalLength);
-    })
-    .attr("r", 8)
-    .attr("opacity", "1.0")
-    .attr("class", function(d) {
-      return d.classify;
+      //ENTER
+      circles
+        .enter()
+        .append("circle")
+        .attr("class", "circle")
+        .attr("cx", function(d) {
+          return xScale(d.sepalWidth);
+        })
+        .attr("cy", height)
+        .attr("r", 4)
+        .attr("fill", "white")
+        .transition()
+        .delay(function(d, i) {
+          return i * 2;
+        })
+        .duration(1000)
+        .attr("cx", function(d) {
+          return xScale(d.sepalWidth);
+        })
+        .attr("cy", function(d) {
+          return yScale(d.sepalLength);
+        })
+        .attr("r", 8)
+        .attr("opacity", "1.0")
+        .attr("class", function(d) {
+          return d.classify;
+        });
+
+      //UPDATE
+      //update position to make the animation
+      circles
+        .sort(function(a, b) {
+          return d3.ascending(+a.sepalWidth, +b.sepalWidth);
+        })
+        .transition()
+        .delay(function(d, i) {
+          return i * 2;
+        })
+        .duration(1000)
+        .attr("cx", function(d) {
+          return xScale(d.sepalWidth);
+        })
+        .attr("cy", function(d) {
+          return yScale(d.sepalLength);
+        })
+        .attr("r", 8)
+        .attr("opacity", "1.0")
+        .attr("class", function(d) {
+          return d.classify;
+        });
+      // EXIT
+      circles.exit().remove();
+
+      /// Update X Axis
+      svg
+        .selectAll("g.x.axis")
+        .transition()
+        .duration(1000)
+        .call(xAxis);
+
+      // Update Y Axis
+      svg
+        .selectAll("g.y.axis")
+        .transition()
+        .duration(1000)
+        .call(yAxis);
     });
-
-  //UPDATE
-  //update position to make the animation
-  circles
-    .sort(function(a, b) {
-      return d3.ascending(+a.sepalWidth, +b.sepalWidth);
-    })
-    .transition()
-    .delay(function(d, i) {
-      return i * 2;
-    })
-    .duration(1000)
-    .attr("cx", function(d) {
-      return xScale(d.sepalWidth);
-    })
-    .attr("cy", function(d) {
-      return yScale(d.sepalLength);
-    })
-    .attr("r", 8)
-    .attr("opacity", "1.0")
-    .attr("class", function(d) {
-      return d.classify;
-    });
-  // EXIT
-  circles.exit().remove();
-
-  /// Update X Axis
-  svg
-    .selectAll("g.x.axis")
-    .transition()
-    .duration(1000)
-    .call(xAxis);
-
-  // Update Y Axis
-  svg
-    .selectAll("g.y.axis")
-    .transition()
-    .duration(1000)
-    .call(yAxis);
 }
