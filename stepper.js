@@ -5,11 +5,23 @@ var stepper = main.select("#vis-container");
 var annotation = stepper.select("#annotation-steps");
 var figure = stepper.select("#vis-canvas");
 
+function computeDimensions(selection) {
+  var dimensions = null;
+  var node = selection.node();
+  if (node instanceof SVGElement) {
+    // check if node is svg element
+    dimensions = node.getBBox();
+  } else {
+    // else is html element
+    dimensions = node.getBoundingClientRect();
+  }
+  return dimensions;
+}
 //定义可视化基本元素
 //margin convention
 var margin = { top: 10, right: 20, bottom: 60, left: 30 },
-  width = 900 - margin.left - margin.right,
-  height = 616 - margin.top - margin.bottom;
+  width = computeDimensions(figure).width - margin.left - margin.right,
+  height = computeDimensions(figure).height / 2 - margin.top - margin.bottom;
 
 //create x and y scale. We'll set the domain later
 var xScale = d3
