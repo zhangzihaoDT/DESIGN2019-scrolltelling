@@ -21,7 +21,7 @@ function computeDimensions(selection) {
 //margin convention
 var margin = { top: 10, right: 20, bottom: 60, left: 30 },
   width = computeDimensions(figure).width - margin.left - margin.right,
-  height = computeDimensions(figure).height / 2 - margin.top - margin.bottom;
+  height = computeDimensions(figure).height - margin.top - margin.bottom;
 
 //create x and y scale. We'll set the domain later
 var xScale = d3
@@ -111,7 +111,6 @@ d3.selectAll("a.step-link").on("click", function(d) {
 });
 //load data
 var url = "data/bubblesBind.csv";
-
 function initAxis() {
   svg
     .append("g")

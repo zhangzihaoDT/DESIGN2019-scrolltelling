@@ -14,47 +14,67 @@
 
 <body>
   <div id="container">
-    <h1>Dynamic Annotations in a Visualization Stepper</h1>
-    <h2 class="subtitle">Example of using D3.js to switch between annotations for different steps of a visualization
-    </h2>
-    <div id="vis-nav">
-      <a href="#" id="step1" class="step-link active">Step1</a>
-      <a href="#" id="step2" class="step-link">Step2</a>
-      <a href="#" id="step3" class="step-link">Step3</a>
+    <div id="vis-tittle">
+      <h1>进步式可视化与flex布局动态注释</h1>
+      <h2 class="subtitle">使用D3.js在可视化的不同步骤之间切换注释的示例</h2>
     </div>
+
     <div id="vis-container">
       <div id="annotation-steps">
-        <div class="annotation-step" id="step1-annotation" style="display:block;">
-          <div class="annotation" id="step1-left-annotation">
-            <h4>Left Annotation Title</h4>
-            <p>Here is the annotation text for the <strong>left</strong> annotation of step 1</p>
+        <div class="annotation-step" id="step1-annotation" style="display: block;">
+          <div class="Grid-top"></div>
+          <div class="Grid-center">
+            <div class="Grid-cell left-cell">
+              <h4>左注释标题</h4>
+              <p>Here is the annotation text for the <strong>left</strong> annotation of step 1</p>
+            </div>
+            <div class="Grid-cell"></div>
+            <div class="Grid-cell right-cell">
+              <h4>右注释标题</h4>
+              <p>Here is the annotation text for the <strong>right</strong> annotation of step 1</p>
+            </div>
           </div>
-          <div class="annotation" id="step1-right-annotation">
-            <h4>Right Annotation Title</h4>
-            <p>Here is the annotation text for the <strong>right</strong> annotation of step 1</p>
-          </div>
+          <div class="Grid-low"></div>
         </div>
         <div class="annotation-step" id="step2-annotation">
-          <div class="annotation" id="step2-center-annotation">
-            <h4>Center Annotation Title</h4>
-            <p>Here is the annotation text for the center annotation of step 2.<br />
-              We are using absolute positioning of these divs</p>
+          <div class="Grid-top">
+            <div class="Grid-cell"></div>
+            <div class="Grid-cell center-cell">
+              <h4>中部释标题</h4>
+              <p>Here is the annotation text for the center annotation of step 2.<br />
+                We are using absolute positioning of these divs</p>
+            </div>
+            <div class="Grid-cell"></div>
           </div>
+          <div class="Grid-center"></div>
+          <div class="Grid-low"></div>
         </div>
         <div class="annotation-step" id="step3-annotation">
-          <div class="annotation" id="step3-high-annotation">
-            <h4>High Annotation Title</h4>
-            <p>This is text up high.</p>
+          <div class="Grid-top">
+            <div class="Grid-cell left-cell">
+              <h4>左上角注释标题</h4>
+              <p>This is text up high.</p>
+            </div>
           </div>
-          <div class="annotation" id="step3-low-annotation">
-            <h4>Low Annotation Title</h4>
-            <p>This is text down low.</p>
+          <div class="Grid-center"></div>
+          <div class="Grid-low">
+            <div class="Grid-cell"></div>
+            <div class="Grid-cell right-cell">
+              <h4>右下角注释标题</h4>
+              <p>This is text down low.</p>
+            </div>
           </div>
+
         </div>
       </div>
       <div id="vis-canvas">
         <p style="font-size: 20px;font-weight: 900;color:#7f7f7f;text-align: center;">1</p>
       </div>
+    </div>
+    <div id="vis-nav">
+      <a href="#" id="step1" class="step-link active">Step1</a>
+      <a href="#" id="step2" class="step-link">Step2</a>
+      <a href="#" id="step3" class="step-link">Step3</a>
     </div>
   </div>
   <script src="stepper.js"></script>
