@@ -13,12 +13,12 @@
 </head>
 
 <body>
+  <div id="log"></div>
   <div id="container">
-    <div id="vis-tittle">
+    <div id="vis-tittle" class="testClass">
       <h1>进步式可视化与flex布局动态注释</h1>
       <h2 class="subtitle">使用D3.js在可视化的不同步骤之间切换注释的示例</h2>
     </div>
-
     <div id="vis-container">
       <div id="annotation-steps">
         <div class="annotation-step" id="step1-annotation" style="display: block;">
@@ -102,5 +102,14 @@
       }
     }
     document.onkeyup = keyUp;
+
+    stepper.on("click", function () {
+      currentStep++;
+      var next = (currentStep % 3) + 1;
+      switchStep(next);
+      switchAnnotation(next);
+      vis(next);
+    });
+
   </script>
 </body>

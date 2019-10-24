@@ -4,7 +4,13 @@ var step = main.select("#vis-nav");
 var stepper = main.select("#vis-container");
 var annotation = stepper.select("#annotation-steps");
 var figure = stepper.select("#vis-canvas");
-
+stepper.on("click", function() {
+  currentStep++;
+  var next = (currentStep % 3) + 1;
+  switchStep(next);
+  switchAnnotation(next);
+  vis(next);
+});
 function computeDimensions(selection) {
   var dimensions = null;
   var node = selection.node();
@@ -99,12 +105,11 @@ function vis(stepNo) {
   }
 }
 
-d3.selectAll("a.step-link").on("click", function(d) {
+d3.selectAll("a.step-link").on("click", function() {
   var clickedStepNo = d3
     .select(this)
     .attr("id")
     .slice(4);
-  console.log(clickedStepNo);
   switchStep(clickedStepNo);
   switchAnnotation(clickedStepNo);
   vis(clickedStepNo);
