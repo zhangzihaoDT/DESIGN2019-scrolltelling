@@ -40,7 +40,39 @@ a.active {
   flex-direction: column; /*垂直对齐*/
   justify-content: center; /*垂直居中*/
   align-items: center; /*元素居中*/
-  height: 10vh;
+  height: 20vh;
+  background: linear-gradient(
+    135deg,
+    rgba(232, 232, 232, 0) 40%,
+    #b0b0b0 40%,
+    #b0b0b0 50%,
+    rgba(232, 232, 232, 0) 50%,
+    rgba(232, 232, 232, 0) 90%,
+    #b0b0b0 90%,
+    #b0b0b0 100%
+  );
+  background-image: linear-gradient(
+    135deg,
+    rgba(232, 232, 232, 0) 40%,
+    rgb(176, 176, 176) 40%,
+    rgb(176, 176, 176) 50%,
+    rgba(232, 232, 232, 0) 50%,
+    rgba(232, 232, 232, 0) 90%,
+    rgb(176, 176, 176) 90%,
+    rgb(176, 176, 176) 100%
+  );
+  background-size: 7.07px 7.07px;
+  width: 100%;
+}
+.headline-texture {
+  z-index: 20;
+}
+.headline-fade {
+  height: 20vh;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
 #vis-nav {
   display: flex;
@@ -66,7 +98,7 @@ a.active {
   z-index: -1;
   overflow: hidden;
   background-color: #ffffff;
-  height: 80vh;
+  height: 70vh;
   position: absolute;
   left: 0;
   top: 0;
@@ -84,7 +116,7 @@ a.active {
   justify-content: space-between;
 }
 .Grid-1of3 {
-  height: calc(80vh / 3);
+  height: calc(70vh / 3);
 }
 .Grid-center {
   align-items: center;
