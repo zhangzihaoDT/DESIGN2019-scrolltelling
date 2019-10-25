@@ -79,23 +79,21 @@ a.active {
 
 /* Finally we can position each annotation exactly how
  * we want. */
-.Grid-center {
+.Grid {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+}
+.Grid-1of3 {
   height: calc(80vh / 3);
+}
+.Grid-center {
+  align-items: center;
 }
 .Grid-top {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  height: calc(80vh / 3);
 }
 .Grid-low {
-  display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  height: calc(80vh / 3);
 }
 
 .Grid-cell {

@@ -4,13 +4,7 @@ var step = main.select("#vis-nav");
 var stepper = main.select("#vis-container");
 var annotation = stepper.select("#annotation-steps");
 var figure = stepper.select("#vis-canvas");
-stepper.on("click", function() {
-  currentStep++;
-  var next = (currentStep % 3) + 1;
-  switchStep(next);
-  switchAnnotation(next);
-  vis(next);
-});
+
 function computeDimensions(selection) {
   var dimensions = null;
   var node = selection.node();
